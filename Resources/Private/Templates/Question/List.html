@@ -1,0 +1,70 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <f:if condition="{categoryTree}">
+
+        <ul class="c-content-list__list">
+            <f:for each="{categoryTree}" as="category">
+                <f:if condition="{category.hasFaqs}">
+                    <li class="c-content-list__item">
+                        {category.title}
+                    </li>
+                </f:if>
+            </f:for>
+        </ul>
+
+        <f:if condition="{settings.showSearchForm}">
+            <form>
+                <label>Suche</label>
+                <input name="tx_t3faq_list[search]" value="" placeholder="suche">
+            </form>
+        </f:if>
+
+        <div class="c-text u-color-bg-width:default u-space-top:default">
+            <h2>Häufig gestellte Fragen</h2>
+            <div class="c-content-list u-space-top:default">
+                <f:for each="{categoryTree}" as="category">
+                    <f:if condition="{category.hasFaqs}">
+                        <h3>###{category.title}###</h3>
+
+                        <f:if condition="!{category.faqs}">
+                            <f:if condition="{category.children}">
+                                <f:render section="SubCategory" arguments="{categories:category.children}"/>
+                            </f:if>
+                        </f:if>
+
+                        <f:if condition="{category.faqs}">
+                            <f:render section="FaqList" arguments="{faqs:category.faqs}"/>
+                        </f:if>
+
+
+                    </f:if>
+                </f:for>
+
+            </div>
+        </div>
+    </f:if>
+</f:section>
+
+<f:section name="FaqList">
+    <ul class="c-content-list__list">
+        <f:for each="{faqs}" as="question">
+            <li class="c-content-list__item">
+                <f:render partial="Question/List/Item" section="Main" arguments="{question:question}"/>
+            </li>
+        </f:for>
+    </ul>
+</f:section>
+
+<f:section name="SubCategory">
+    <f:for each="{categories}" as="category">
+        <f:if condition="{category.hasFaqs}">
+            <h4>####{category.title}####</h4>
+            <f:render section="FaqList" arguments="{faqs:category.faqs}"/>
+        </f:if>
+    </f:for>
+</f:section>
+
+</html>

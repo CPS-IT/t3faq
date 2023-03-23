@@ -1,0 +1,55 @@
+variables:
+  COMPOSER_CACHE_DIR: /cache/composer
+  COMPOSER_ALLOW_SUPERUSER: 1
+  COMPOSER_NO_INTERACTION: 1
+  XDEBUG_MODE: 'coverage'
+  COMPOSER_PROCESS_TIMEOUT: "1800"
+  COMPOSER_COMMAND_PARAMETERS: --update-with-dependencies --prefer-stable --optimize-autoloader --no-progress
+  TYPO3_VERSION: ^7.6
+  TYPO3_PATH_WEB: "$CI_PROJECT_DIR/.Build/Web"
+  MYSQL_DATABASE: "typo3"
+  MYSQL_ROOT_PASSWORD: "joh316"
+  typo3DatabaseName: "typo3"
+  typo3DatabaseHost: "mysql"
+  typo3DatabaseUsername: "root"
+  typo3DatabasePassword: "joh316"
+
+
+before_script:
+  - export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -q -y install parallel
+  - docker-php-ext-install mysqli
+  - composer self-update
+
+stages:
+  - test
+
+# Test template
+.test: &test-template
+  stage: test
+  services:
+    - mysql:5
+  image: webdevops/php-dev:$DOCKER_TAG
+  only:
+    - branches
+  before_script:
+    - export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get -q -y install parallel
+    - docker-php-ext-install mysqli
+    - composer self-update
+    - export TYPO3_PATH_WEB="$PWD/.Build/web"
+    - composer config prefer-stable true
+    - composer require typo3/minimal="${TYPO3_VERSION}" $COMPOSER_COMMAND_PARAMETERS
+    - git checkout composer.json
+  script:
+    - XDEBUG_MODE=coverage composer test -- --colors=never --coverage-text
+    - find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
+    - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}'
+
+  coverage: '/^\s*Lines:\s*\d+.\d+\%/'
+
+# Test: PHP 7.4 and TYPO3 10.4
+test:php7.4:v10.4:
+  <<: *test-template
+  variables:
+    DOCKER_TAG: '7.4'
+    TYPO3_VERSION: ^10.4
+

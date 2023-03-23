@@ -1,0 +1,19 @@
+plugin.tx_t3faq {
+    view {
+        # cat=plugin.tx_t3faq/view/10; type=string; label=Path to template root (FE)
+        templateRootPath =
+        # cat=plugin.tx_t3faq/view/20; type=string; label=Path to template layouts (FE)
+        layoutRootPath =
+        # cat=plugin.tx_t3faq/view/30; type=string; label=Path to template partials (FE)
+        partialRootPath =
+    }
+
+    settings {
+        # Storage page and subpages
+        recursive = 0
+        listPid = 0
+        categoryPid = 0
+        categoryPidRecursive = 1
+        categoryRoot = 0
+    }
+}

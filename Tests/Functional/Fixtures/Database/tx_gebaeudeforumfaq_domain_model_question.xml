@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tx_t3faq_domain_model_question>
+        <uid>1</uid>
+        <pid>1</pid>
+        <question>What's the question?</question>
+        <answer>42</answer>
+        <weight>1</weight>
+    </tx_t3faq_domain_model_question>
+    <tx_t3faq_domain_model_question>
+        <uid>2</uid>
+        <pid>3</pid>
+        <question>What's the answer?</question>
+        <answer>No</answer>
+        <weight>0</weight>
+    </tx_t3faq_domain_model_question>
+</dataset>

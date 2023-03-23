@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.tab.settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.categoriesList>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.settings.categoriesList</label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectTree</renderType>
+                                <foreign_table>sys_category</foreign_table>
+                                <foreign_table_where> AND {#sys_category}.{#sys_language_uid} IN (-1, 0) ORDER BY sys_category.sorting ASC</foreign_table_where>
+                                <maxitems>99</maxitems>
+                                <minitems>0</minitems>
+                                <size>10</size>
+                                <treeConfig>
+                                    <appearance>
+                                        <expandAll>1</expandAll>
+                                        <maxLevels>2</maxLevels>
+                                        <showHeader>1</showHeader>
+                                    </appearance>
+                                    <parentField>parent</parentField>
+                                </treeConfig>
+                            </config>
+                        </TCEforms>
+                    </settings.categoriesList>
+                    <settings.categoriesListIncludeParentCategories>
+                        <TCEforms>
+                            <label>LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.settings.categoriesListIncludeParentCategories</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.categoriesListIncludeParentCategories>
+                    <settings.showSearchForm>
+                        <TCEforms>
+                            <label>LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.settings.showSearchForm</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.showSearchForm>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

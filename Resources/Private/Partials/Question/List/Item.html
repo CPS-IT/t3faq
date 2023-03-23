@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:section name="Main">
+    <div class="c-content-list__content">
+
+        <f:if condition="{question.categories->f:count()}">
+            <div class="question-categories">
+                <ul>
+                    <f:for as="category" each="{question.categories}">
+                        <li>{category.title} - ID: {category.uid}</li>
+                    </f:for>
+                </ul>
+            </div>
+        </f:if>
+
+
+        <div class="question-question">"{question.question}"</div>
+        <div class="question-answer">{question.answer->f:format.html()}</div>
+    </div>
+</f:section>
+
+</html>

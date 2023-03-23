@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" date="2020-01-15T14:21:32Z" product-name="t3faq">
+        <header/>
+        <body>
+            <trans-unit id="plugin.faq.title">
+                <source>FAQ</source>
+            </trans-unit>
+            <trans-unit id="plugin.faq.list.title">
+                <source>FAQ list</source>
+            </trans-unit>
+            <trans-unit id="plugin.faq.list.description">
+                <source>Displays a list of FAQ records in Frontend.</source>
+            </trans-unit>
+            <trans-unit id="plugin.faq.list_selected.title">
+                <source>FAQs lists selected records</source>
+            </trans-unit>
+            <trans-unit id="plugin.faq.list_selected.description">
+                <source>Displays a list of selected FAQ records in Frontend.</source>
+            </trans-unit>
+            <trans-unit id="flexform.sheet.general">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="flexform.tab.settings">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.tab.pages">
+                <source>Pages</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.maxItems">
+                <source>Number of items per page</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.listSelectedQuestions">
+                <source>FAQs</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.categoriesList">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.categoriesListIncludeParentCategories">
+                <source>Include parent categories</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.showSearchForm">
+                <source>Show search form</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

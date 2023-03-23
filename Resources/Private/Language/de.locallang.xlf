@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" product-name="t3faq">
+        <header/>
+        <body>
+            <trans-unit id="information_date">
+                <source>updated</source>
+                <target>Stand</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
