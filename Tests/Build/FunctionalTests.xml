@@ -1,16 +1,16 @@
 <phpunit
-        backupGlobals="true"
-        bootstrap="../../.Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTestsBootstrap.php"
-        colors="true"
-        convertErrorsToExceptions="true"
-        convertWarningsToExceptions="true"
-        forceCoversAnnotation="false"
-        stopOnError="false"
-        stopOnFailure="false"
-        stopOnIncomplete="false"
-        stopOnSkipped="false"
-        verbose="false"
-        beStrictAboutTestsThatDoNotTestAnything="false"
+    backupGlobals="true"
+    bootstrap="../../.Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTestsBootstrap.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertWarningsToExceptions="true"
+    forceCoversAnnotation="false"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    verbose="false"
+    beStrictAboutTestsThatDoNotTestAnything="false"
 >
     <testsuites>
         <testsuite name="Functional Tests">

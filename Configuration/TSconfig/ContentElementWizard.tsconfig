@@ -1,22 +1,23 @@
 mod.wizards.newContentElement.wizardItems.plugins {
-	elements {
-		t3faq-list {
-			iconIdentifier = t3faq-question
-			title = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list.title
-			description = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list.description
-			tt_content_defValues {
-				CType = list
-				list_type = t3faq_list
-			}
-		}
-		t3faq-list-seelcted {
-			iconIdentifier = t3faq-question
-			title = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list_selected.title
-			description = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list_selected.description
-			tt_content_defValues {
-				CType = list
-				list_type = t3faq_listselected
-			}
-		}
-	}
+  elements {
+    t3faq-list {
+      iconIdentifier = t3faq-question
+      title = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list.title
+      description = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list.description
+      tt_content_defValues {
+        CType = list
+        list_type = t3faq_list
+      }
+    }
+
+    t3faq-list-seelcted {
+      iconIdentifier = t3faq-question
+      title = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list_selected.title
+      description = LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list_selected.description
+      tt_content_defValues {
+        CType = list
+        list_type = t3faq_listselected
+      }
+    }
+  }
 }

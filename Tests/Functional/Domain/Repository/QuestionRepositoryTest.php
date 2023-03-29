@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace Fr\T3faq\Tests\Functional\Domain\Repository;
 
 /***************************************************************
@@ -84,7 +85,7 @@ class QuestionRepositoryTest extends FunctionalTestCase
 
     public function testFindDemandedFindsQuestionsByPageIds(): void
     {
-        $pages = [1,3];
+        $pages = [1, 3];
         $demand = new QuestionDemand();
         $demand->setPageIds($pages);
         $result = $this->subject->findDemanded($demand);

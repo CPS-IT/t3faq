@@ -32,7 +32,7 @@ class PageIdsFromSettingsDecorator extends AbstractQuestionDemandFromSettingsDec
             $storageIds = $this->settings[self::SETTING_KEY_STORAGE_ID];
         }
         $this->component->setPageIds(
-            $pageUtility->resolveStoragePages($storageIds,$recursive)
+            $pageUtility->resolveStoragePages($storageIds, $recursive)
         );
 
         return $this->component;
