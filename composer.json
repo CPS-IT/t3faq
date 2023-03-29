@@ -1,59 +1,59 @@
 {
-  "name": "fr/t3faq",
-  "description": "Frequently Asked Questions. This package is an extension to the TYPO3 system.",
-  "homepage": "https://git.dena.de/common/components/t3faq",
-  "license": "GPL-2.0-or-later",
-  "type": "typo3-cms-extension",
-  "require": {
-    "typo3/cms-core": "^10.4",
-    "dwenzel/t3extension-tools": "^1.5",
-    "fr/fr-utility": "^4.0"
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-master",
-    "nimut/testing-framework": "^4.0 || ^5.0"
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "t3faq",
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "Fr\\T3faq\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Fr\\T3faq\\Tests\\": "Tests"
-    }
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor/",
-    "bin-dir": ".Build/bin/",
-    "platform": {
-      "php": "7.4"
-    }
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/t3faq ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/t3faq"
-    ],
-    "test": [
-      "@test:unit",
-      "@test:functional:run"
-    ],
-    "test:unit": [
-      "phpunit -c Tests/Build/UnitTests.xml"
-    ],
-    "test:functional:prepare": [
-      "typo3cms install:setup --no-interaction --use-existing-database"
-    ],
-    "test:functional:run": [
-      ".Build/bin/phpunit --colors -c Tests/Build/FunctionalTests.xml Tests/Functional/"
-    ]
-  }
+	"name": "fr/t3faq",
+	"description": "Frequently Asked Questions. This package is an extension to the TYPO3 system.",
+	"homepage": "https://git.dena.de/common/components/t3faq",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"require": {
+		"typo3/cms-core": "^10.4",
+		"dwenzel/t3extension-tools": "^1.5",
+		"fr/fr-utility": "^4.0"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-master",
+		"nimut/testing-framework": "^4.0 || ^5.0"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "t3faq",
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Fr\\T3faq\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Fr\\T3faq\\Tests\\": "Tests"
+		}
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor/",
+		"bin-dir": ".Build/bin/",
+		"platform": {
+			"php": "7.4"
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"mkdir -p .Build/Web/typo3conf/ext/",
+			"[ -L .Build/Web/typo3conf/ext/t3faq ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/t3faq"
+		],
+		"test": [
+			"@test:unit",
+			"@test:functional:run"
+		],
+		"test:unit": [
+			"phpunit -c Tests/Build/UnitTests.xml"
+		],
+		"test:functional:prepare": [
+			"typo3cms install:setup --no-interaction --use-existing-database"
+		],
+		"test:functional:run": [
+			".Build/bin/phpunit --colors -c Tests/Build/FunctionalTests.xml Tests/Functional/"
+		]
+	}
 }

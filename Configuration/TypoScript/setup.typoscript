@@ -1,33 +1,34 @@
 plugin.tx_t3faq {
-    view {
-        templateRootPaths {
-            10 = {$plugin.tx_t3faq.view.templateRootPath}
-        }
-
-        layoutRootPaths {
-            10 = {$plugin.tx_t3faq.view.layoutRootPath}
-        }
-
-        partialRootPaths {
-            10 = {$plugin.tx_t3faq.view.partialRootPath}
-        }
+  view {
+    templateRootPaths {
+      10 = {$plugin.tx_t3faq.view.templateRootPath}
     }
-    settings {
-        # Storage page and subpages
-        recursive = {$plugin.tx_t3faq.settings.recursive}
-        listPid = {$plugin.tx_t3faq.settings.listPid}
-        sorting = weight desc
-        categoryPid = {$plugin.tx_t3faq.settings.categoryPid}
-        categoryPidRecursive = {$plugin.tx_t3faq.settings.categoryPidRecursive}
-        categoryRoot = {$plugin.tx_t3faq.settings.categoryRoot}
-        ignoreRootCategory = 1
-        categorySorting = sorting asc
+
+    layoutRootPaths {
+      10 = {$plugin.tx_t3faq.view.layoutRootPath}
     }
+
+    partialRootPaths {
+      10 = {$plugin.tx_t3faq.view.partialRootPath}
+    }
+  }
+
+  settings {
+    # Storage page and subpages
+    recursive = {$plugin.tx_t3faq.settings.recursive}
+    listPid = {$plugin.tx_t3faq.settings.listPid}
+    sorting = weight desc
+    categoryPid = {$plugin.tx_t3faq.settings.categoryPid}
+    categoryPidRecursive = {$plugin.tx_t3faq.settings.categoryPidRecursive}
+    categoryRoot = {$plugin.tx_t3faq.settings.categoryRoot}
+    ignoreRootCategory = 1
+    categorySorting = sorting asc
+  }
 }
 
 plugin.tx_t3faq_list < plugin.tx_t3faq
 plugin.tx_t3faq_list {
-    settings {
-        sorting = weight desc, sorting asc
-    }
+  settings {
+    sorting = weight desc, sorting asc
+  }
 }

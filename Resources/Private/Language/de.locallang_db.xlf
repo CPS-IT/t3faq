@@ -1,81 +1,81 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-12-15T02:43:00Z"
-          product-name="t3faq">
-        <header/>
-        <body>
-            <trans-unit id="question.title">
-                <source>Frequently Asked Questions</source>
-                <target>Häufig gestellte Fragen</target>
-            </trans-unit>
-            <trans-unit id="question.question">
-                <source>Question</source>
-                <target>Frage</target>
-            </trans-unit>
-            <trans-unit id="question.answer">
-                <source>Answer</source>
-                <target>Anwort</target>
-            </trans-unit>
-            <trans-unit id="question.categories">
-                <source>Categories</source>
-                <target>Kategorien</target>
-            </trans-unit>
-            <trans-unit id="question.weight">
-                <source>Weight</source>
-                <target>Gewichtung</target>
-            </trans-unit>
-            <trans-unit id="question.information_date">
-                <source>Information date</source>
-                <target>Stand der Information</target>
-            </trans-unit>
-            <trans-unit id="question.likes">
-                <source>Likes</source>
-                <target>Bewertung positiv</target>
-            </trans-unit>
-            <trans-unit id="question.dislikes">
-                <source>Dislikes</source>
-                <target>Bewertung negativ</target>
-            </trans-unit>
-            <trans-unit id="sys_category.frame_class">
-                <source>Layout</source>
-                <target>Layout</target>
-            </trans-unit>
-            <trans-unit id="sys_category.frame_class.blue">
-                <source>Blue</source>
-                <target>Blau</target>
-            </trans-unit>
-            <trans-unit id="sys_category.frame_class.red">
-                <source>Red</source>
-                <target>Rot</target>
-            </trans-unit>
-            <trans-unit id="sys_category.frame_class.yellow">
-                <source>Yellow</source>
-                <target>Gelbe</target>
-            </trans-unit>
-            <trans-unit id="sys_category.frame_class.turquoise">
-                <source>Turquoise</source>
-                <target>Türkis</target>
-            </trans-unit>
-            <trans-unit id="palette.likes">
-                <source>Likes</source>
-                <target>Bewertung</target>
-            </trans-unit>
-            <trans-unit id="tab.general">
-                <source>General</source>
-                <target>Allgemein</target>
-            </trans-unit>
-            <trans-unit id="tab.categories">
-                <source>Categories</source>
-                <target>Kategorien</target>
-            </trans-unit>
-            <trans-unit id="tab.language">
-                <source>Language</source>
-                <target>Sprache</target>
-            </trans-unit>
-            <trans-unit id="tab.access">
-                <source>Access</source>
-                <target>Zugriff</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-12-15T02:43:00Z"
+		  product-name="t3faq">
+		<header/>
+		<body>
+			<trans-unit id="question.title">
+				<source>Frequently Asked Questions</source>
+				<target>Häufig gestellte Fragen</target>
+			</trans-unit>
+			<trans-unit id="question.question">
+				<source>Question</source>
+				<target>Frage</target>
+			</trans-unit>
+			<trans-unit id="question.answer">
+				<source>Answer</source>
+				<target>Anwort</target>
+			</trans-unit>
+			<trans-unit id="question.categories">
+				<source>Categories</source>
+				<target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="question.weight">
+				<source>Weight</source>
+				<target>Gewichtung</target>
+			</trans-unit>
+			<trans-unit id="question.information_date">
+				<source>Information date</source>
+				<target>Stand der Information</target>
+			</trans-unit>
+			<trans-unit id="question.likes">
+				<source>Likes</source>
+				<target>Bewertung positiv</target>
+			</trans-unit>
+			<trans-unit id="question.dislikes">
+				<source>Dislikes</source>
+				<target>Bewertung negativ</target>
+			</trans-unit>
+			<trans-unit id="sys_category.frame_class">
+				<source>Layout</source>
+				<target>Layout</target>
+			</trans-unit>
+			<trans-unit id="sys_category.frame_class.blue">
+				<source>Blue</source>
+				<target>Blau</target>
+			</trans-unit>
+			<trans-unit id="sys_category.frame_class.red">
+				<source>Red</source>
+				<target>Rot</target>
+			</trans-unit>
+			<trans-unit id="sys_category.frame_class.yellow">
+				<source>Yellow</source>
+				<target>Gelbe</target>
+			</trans-unit>
+			<trans-unit id="sys_category.frame_class.turquoise">
+				<source>Turquoise</source>
+				<target>Türkis</target>
+			</trans-unit>
+			<trans-unit id="palette.likes">
+				<source>Likes</source>
+				<target>Bewertung</target>
+			</trans-unit>
+			<trans-unit id="tab.general">
+				<source>General</source>
+				<target>Allgemein</target>
+			</trans-unit>
+			<trans-unit id="tab.categories">
+				<source>Categories</source>
+				<target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tab.language">
+				<source>Language</source>
+				<target>Sprache</target>
+			</trans-unit>
+			<trans-unit id="tab.access">
+				<source>Access</source>
+				<target>Zugriff</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

@@ -12,6 +12,7 @@ namespace Fr\T3faq\Controller;
  */
 
 use Fr\FrUtility\Traits\FeCacheTagsTrait;
+use Fr\FrUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
 use Fr\T3faq\Configuration\SettingsInterface as SI;
 use Fr\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
 use Fr\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
@@ -22,7 +23,6 @@ use Fr\T3faq\Service\QuestionToCategoryTreeService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-use Fr\FrUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
 
 
 /**

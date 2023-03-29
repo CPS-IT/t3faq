@@ -36,7 +36,7 @@ class QuestionDemandTest extends \PHPUnit\Framework\TestCase
 
     public function testPagIdsCanBeSet(): void
     {
-        $pages = [1,2];
+        $pages = [1, 2];
         $this->subject->setPageIds($pages);
 
         self::assertSame(

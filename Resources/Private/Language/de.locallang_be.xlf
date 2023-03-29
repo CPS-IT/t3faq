@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-12-15T02:43:00Z"
-          product-name="t3faq">
-        <header/>
-        <body>
-            <trans-unit id="plugin.faq.title">
-                <source>FAQ</source>
-                <target>FAQ</target>
-            </trans-unit>
-            <trans-unit id="plugin.faq.list.title">
-                <source>FAQ list</source>
-                <target>FAQ-Datensätzen Listenansicht</target>
-            </trans-unit>
-            <trans-unit id="plugin.faq.list.description">
-                <source>Displays a list of FAQ records in Frontend.</source>
-                <target>Zeigt eine Liste von FAQ-Datensätzen im Frontend an.</target>
-            </trans-unit>
-            <trans-unit id="plugin.faq.list_selected.title">
-                <source>FAQs lists selected records</source>
-                <target>FAQ Liste ausgewählter Datensätze</target>
-            </trans-unit>
-            <trans-unit id="plugin.faq.list_selected.description">
-                <source>Displays a list of selected FAQ records in Frontend.</source>
-                <target>Zeigt eine Liste ausgewählter FAQ-Datensätze im Frontend an.</target>
-            </trans-unit>
-            <trans-unit id="flexform.sheet.general">
-                <source>General</source>
-                <target>Allgemeines</target>
-            </trans-unit>
-            <trans-unit id="flexform.tab.settings">
-                <source>Settings</source>
-                <target>Einstellungen</target>
-            </trans-unit>
-            <trans-unit id="flexform.tab.pages">
-                <source>Pages</source>
-                <target>Seiten</target>
-            </trans-unit>
-            <trans-unit id="flexform.settings.maxItems">
-                <source>Number of items per page</source>
-                <target>Anzahl der Elemente pro Seite</target>
-            </trans-unit>
-            <trans-unit id="flexform.settings.listSelectedQuestions">
-                <source>FAQs</source>
-                <target>FAQs</target>
-            </trans-unit>
-            <trans-unit id="flexform.settings.categoriesList">
-                <source>Categories</source>
-                <target>Kategorien</target>
-            </trans-unit>
-            <trans-unit id="flexform.settings.categoriesListIncludeParentCategories">
-                <source>Include parent categories</source>
-                <target>Übergeordnete Kategorien einschließen</target>
-            </trans-unit>
-            <trans-unit id="flexform.settings.showSearchForm">
-                <source>Show search form</source>
-                <target>Suchformular anzeigen</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-12-15T02:43:00Z"
+		  product-name="t3faq">
+		<header/>
+		<body>
+			<trans-unit id="plugin.faq.title">
+				<source>FAQ</source>
+				<target>FAQ</target>
+			</trans-unit>
+			<trans-unit id="plugin.faq.list.title">
+				<source>FAQ list</source>
+				<target>FAQ-Datensätzen Listenansicht</target>
+			</trans-unit>
+			<trans-unit id="plugin.faq.list.description">
+				<source>Displays a list of FAQ records in Frontend.</source>
+				<target>Zeigt eine Liste von FAQ-Datensätzen im Frontend an.</target>
+			</trans-unit>
+			<trans-unit id="plugin.faq.list_selected.title">
+				<source>FAQs lists selected records</source>
+				<target>FAQ Liste ausgewählter Datensätze</target>
+			</trans-unit>
+			<trans-unit id="plugin.faq.list_selected.description">
+				<source>Displays a list of selected FAQ records in Frontend.</source>
+				<target>Zeigt eine Liste ausgewählter FAQ-Datensätze im Frontend an.</target>
+			</trans-unit>
+			<trans-unit id="flexform.sheet.general">
+				<source>General</source>
+				<target>Allgemeines</target>
+			</trans-unit>
+			<trans-unit id="flexform.tab.settings">
+				<source>Settings</source>
+				<target>Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="flexform.tab.pages">
+				<source>Pages</source>
+				<target>Seiten</target>
+			</trans-unit>
+			<trans-unit id="flexform.settings.maxItems">
+				<source>Number of items per page</source>
+				<target>Anzahl der Elemente pro Seite</target>
+			</trans-unit>
+			<trans-unit id="flexform.settings.listSelectedQuestions">
+				<source>FAQs</source>
+				<target>FAQs</target>
+			</trans-unit>
+			<trans-unit id="flexform.settings.categoriesList">
+				<source>Categories</source>
+				<target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="flexform.settings.categoriesListIncludeParentCategories">
+				<source>Include parent categories</source>
+				<target>Übergeordnete Kategorien einschließen</target>
+			</trans-unit>
+			<trans-unit id="flexform.settings.showSearchForm">
+				<source>Show search form</source>
+				<target>Suchformular anzeigen</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
