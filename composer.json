@@ -11,10 +11,10 @@
 		}
 	},
 	"require": {
-		"dwenzel/t3extension-tools": "^2.0",
+		"php": "^8.2",
 		"typo3/cms-core": "^11.5",
-		"cpsit/cps-utility": "^5.0",
-		"php": "^8.2"
+		"dwenzel/t3extension-tools": "^2.0",
+		"cpsit/cps-utility": "^5.0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-master",
