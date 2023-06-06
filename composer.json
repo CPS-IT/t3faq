@@ -11,7 +11,7 @@
 		}
 	},
 	"require": {
-		"dwenzel/t3extension-tools": "^1.5",
+		"dwenzel/t3extension-tools": "^2.0",
 		"typo3/cms-core": "^11.5",
 		"cpsit/cps-utility": "^5.0",
 		"php": "^8.2"
