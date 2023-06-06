@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 
 return [
-    \Fr\T3faq\Domain\Model\Category::class => [
+    \Cpsit\T3faq\Domain\Model\Category::class => [
         'tableName' => 'sys_category',
     ]
 ];

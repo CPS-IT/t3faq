@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Fr\T3faq\Domain\Model;
+namespace Cpsit\T3faq\Domain\Model;
 
 /*
  * This file is part of the t3faq project.
@@ -38,7 +38,7 @@ class Question extends AbstractEntity
     /**
      * Categories
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Fr\T3faq\Domain\Model\Category>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Cpsit\T3faq\Domain\Model\Category>
      * @Lazy
      */
     protected $categories;

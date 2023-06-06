@@ -1,8 +1,8 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
-$tableName = \Fr\T3faq\Domain\Model\Question::TABLE_NAME;
-$extensionKey = \Fr\T3faq\Configuration\Extension::KEY;
+$tableName = \Cpsit\T3faq\Domain\Model\Question::TABLE_NAME;
+$extensionKey = \Cpsit\T3faq\Configuration\Extension::KEY;
 $ll = 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/locallang_db.xlf:';
 
 return [
@@ -25,7 +25,7 @@ return [
         ],
         'searchFields' => 'uid,question,answer',
         'typeicon_classes' => [
-            'default' => \Fr\T3faq\Configuration\SettingsInterface::ICON_IDENTIFIER_QUESTION,
+            'default' => \Cpsit\T3faq\Configuration\SettingsInterface::ICON_IDENTIFIER_QUESTION,
         ],
 
     ],

@@ -9,10 +9,10 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Service;
+namespace Cpsit\T3faq\Service;
 
-use Fr\T3faq\Domain\Model\Category;
-use Fr\T3faq\Domain\Model\Question;
+use Cpsit\T3faq\Domain\Model\Category;
+use Cpsit\T3faq\Domain\Model\Question;
 use Iterator;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 

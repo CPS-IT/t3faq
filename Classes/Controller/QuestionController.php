@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Fr\T3faq\Controller;
+namespace Cpsit\T3faq\Controller;
 
 /*
  * This file is part of the t3faq project.
@@ -11,19 +11,18 @@ namespace Fr\T3faq\Controller;
  * of the License, or any later version.
  */
 
-use Fr\FrUtility\Traits\FeCacheTagsTrait;
-use Fr\FrUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
-use Fr\T3faq\Configuration\SettingsInterface as SI;
-use Fr\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
-use Fr\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
-use Fr\T3faq\Domain\Model\Dto\QuestionDemand;
-use Fr\T3faq\Domain\Repository\CategoryRepository;
-use Fr\T3faq\Domain\Repository\QuestionRepository;
-use Fr\T3faq\Service\QuestionToCategoryTreeService;
+use Cpsit\CpsUtility\Traits\FeCacheTagsTrait;
+use Cpsit\CpsUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
+use Cpsit\T3faq\Configuration\SettingsInterface as SI;
+use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
+use Cpsit\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
+use Cpsit\T3faq\Domain\Repository\CategoryRepository;
+use Cpsit\T3faq\Domain\Repository\QuestionRepository;
+use Cpsit\T3faq\Service\QuestionToCategoryTreeService;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-
 
 /**
  * Class QuestionController
@@ -33,15 +32,9 @@ class QuestionController extends ActionController
     use ExtBaseTypoScriptStdWrapParserTrait;
     use FeCacheTagsTrait;
 
-    /**
-     * @var QuestionRepository
-     */
-    private $questionRepository;
+    private QuestionRepository $questionRepository;
 
-    /**
-     * @var CategoryRepository
-     */
-    private $categoryRepository;
+    private CategoryRepository $categoryRepository;
 
     public function __construct(QuestionRepository $questionRepository, CategoryRepository $categoryRepository)
     {
@@ -49,29 +42,23 @@ class QuestionController extends ActionController
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $this->addCacheTags([SI::FE_CACHE_TAG_FAQ]);
         $this->settings = $this->parseTypoScriptStdWrap($this->settings);
-
+        parent::initializeAction();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function initializeView(ViewInterface $view)
+    protected function prepareView(): void
     {
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $this->view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         if (is_object($GLOBALS['TSFE'])) {
-            $view->assign('pageData', $GLOBALS['TSFE']->page);
+            $this->view->assign('pageData', $GLOBALS['TSFE']->page);
         }
-        parent::initializeView($view);
     }
 
-
-    public function listAction(): void
+    public function listAction(): ResponseInterface
     {
-
         /** @var QuestionDemand $questionsDemand */
         $questionsDemand = GeneralUtility::makeInstance(QuestionDemandFromSettings::class)->get($this->settings);
         $questions = $this->questionRepository->findDemanded($questionsDemand);
@@ -94,7 +81,7 @@ class QuestionController extends ActionController
                 $questions = $questions[$this->settings[SI::SETTING_CATEGORY_ROOT]]['children'];
             }
         }
-
+        $this->prepareView();
         $variables = [
             SI::VIEW_VAR_CATEGORY_TREE => $questions
         ];
@@ -102,16 +89,16 @@ class QuestionController extends ActionController
         $this->view->assignMultiple(
             $variables
         );
+        return $this->htmlResponse();
     }
 
-
-    public function listSelectedAction(): void
+    public function listSelectedAction(): ResponseInterface
     {
         /** @var QuestionDemand $demand */
         $demand = GeneralUtility::makeInstance(QuestionDemandFromSettings::class)->get($this->settings);
 
         $questions = $this->questionRepository->findByUidList($demand->getQuestionIds());
-
+        $this->prepareView();
         $variables = [
             SI::VIEW_VAR_QUESTIONS => $questions,
         ];
@@ -119,5 +106,6 @@ class QuestionController extends ActionController
         $this->view->assignMultiple(
             $variables
         );
+        return $this->htmlResponse();
     }
 }

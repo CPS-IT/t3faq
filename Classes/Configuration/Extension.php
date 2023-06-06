@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Fr\T3faq\Configuration;
+namespace Cpsit\T3faq\Configuration;
 
 /*
  * This file is part of the t3faq project.
@@ -12,10 +12,10 @@ namespace Fr\T3faq\Configuration;
  */
 
 use DWenzel\T3extensionTools\Configuration\ExtensionConfiguration;
-use Fr\T3faq\Configuration\Plugin\QuestionListPluginConfiguration;
-use Fr\T3faq\Configuration\Plugin\QuestionListSelectedPluginConfiguration;
-use Fr\T3faq\Domain\Model\Question;
-use Fr\T3faq\Configuration\SettingsInterface as SI;
+use Cpsit\T3faq\Configuration\Plugin\QuestionListPluginConfiguration;
+use Cpsit\T3faq\Configuration\Plugin\QuestionListSelectedPluginConfiguration;
+use Cpsit\T3faq\Domain\Model\Question;
+use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**

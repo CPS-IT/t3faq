@@ -9,11 +9,11 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Domain\Repository;
+namespace Cpsit\T3faq\Domain\Repository;
 
 use Doctrine\DBAL\Query\QueryBuilder;
-use Fr\T3faq\Domain\Model\Dto\DemandInterface;
-use Fr\T3faq\Domain\Model\Question;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Question;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fr\T3faq\Configuration\Plugin;
+namespace Cpsit\T3faq\Configuration\Plugin;
 
 /*
  * This file is part of the t3faq project.
@@ -12,7 +12,7 @@ namespace Fr\T3faq\Configuration\Plugin;
 
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
-use Fr\T3faq\Configuration\Extension;
+use Cpsit\T3faq\Configuration\Extension;
 
 /**
  * Class QuestionListPluginConfiguration

@@ -9,9 +9,9 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Domain\Model\Dto\Factory;
+namespace Cpsit\T3faq\Domain\Model\Dto\Factory;
 
-use Fr\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 
 abstract class AbstractDemandFromSettings implements DemandFromSettingsFactoryInterface
 {

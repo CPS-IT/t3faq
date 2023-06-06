@@ -9,10 +9,10 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Domain\Repository;
+namespace Cpsit\T3faq\Domain\Repository;
 
-use Fr\T3faq\Domain\Model\Category;
-use Fr\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Category;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;

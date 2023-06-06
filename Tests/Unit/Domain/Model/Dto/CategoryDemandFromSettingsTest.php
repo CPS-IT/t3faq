@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Unit\Domain\Model\Dto;
 
-use Fr\T3faq\Configuration\SettingsInterface as SI;
-use Fr\T3faq\Domain\Model\Dto\CategoryDemand;
-use Fr\T3faq\Domain\Model\Dto\DemandInterface;
-use Fr\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
+use Cpsit\T3faq\Configuration\SettingsInterface as SI;
+use Cpsit\T3faq\Domain\Model\Dto\CategoryDemand;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
 use PHPUnit\Framework\TestCase;
 
 class CategoryDemandFromSettingsTest extends TestCase

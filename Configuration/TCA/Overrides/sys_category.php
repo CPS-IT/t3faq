@@ -2,13 +2,13 @@
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_t3faq_domain_model_question']
     = ['categories'];
 
-$extensionKey = \Fr\T3faq\Configuration\Extension::KEY;
+$extensionKey = \Cpsit\T3faq\Configuration\Extension::KEY;
 $ll = 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/locallang_db.xlf:';
 
 // Bidirectional relation to FAQs
