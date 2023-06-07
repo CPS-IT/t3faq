@@ -92,7 +92,7 @@ final class QuestionToCategoryTreeService
 
         foreach ($properties as $property) {
             $method = 'get' . ucfirst($property);
-            if (is_callable([get_class($category), $method])) {
+            if (is_callable([$category, $method])) {
                 $data[$property] = $category->$method();
             }
         }

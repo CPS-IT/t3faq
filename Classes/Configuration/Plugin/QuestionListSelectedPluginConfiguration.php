@@ -10,6 +10,7 @@ namespace Cpsit\T3faq\Configuration\Plugin;
  * of the License, or any later version.
  */
 
+use Cpsit\T3faq\Controller\QuestionController;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\T3faq\Configuration\Extension;
@@ -28,7 +29,7 @@ class QuestionListSelectedPluginConfiguration implements PluginConfigurationInte
 
     static protected $flexForm = 'FILE:EXT:t3faq/Configuration/FlexForms/QuestionListSelectedPlugin.xml';
     static protected $controllerActions = [
-        'Question' => 'listSelected'
+        QuestionController::class => 'listSelected'
     ];
 
     static protected $nonCacheableControllerActions = [];
