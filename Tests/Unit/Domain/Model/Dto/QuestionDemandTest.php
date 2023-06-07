@@ -20,7 +20,7 @@ class QuestionDemandTest extends \PHPUnit\Framework\TestCase
      */
     protected $subject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new QuestionDemand();
     }

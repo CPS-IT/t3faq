@@ -54,7 +54,7 @@ class QuestionRepositoryTest extends FunctionalTestCase
      */
     protected $result;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         /** @var ObjectManager|ObjectManagerInterface $objectManager */
