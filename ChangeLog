@@ -1,0 +1,8 @@
+2023-06-12         [RELEASE] Release of t3faq 2.0.0 (Vladimir Falcon)
+2023-06-12 6027a6e Update  cpsit/cps-utility dependency (Vladimir Falcon)
+2023-06-07 c49ebde Fixed function call is_callable(). (Vladimir Falcon)
+2023-06-07 bde7564 Update ext_emconf.php TYPO3 dependency (Vladimir Falcon)
+2023-06-07 5060f07 Fixed unit tests (Vladimir Falcon)
+2023-06-06 606f458 Update package requirement options (Vladimir Falcon)
+2023-06-06 d0c056c Update pacakge requiremtn to dwenzel/t3extension-tools v2.0 (Vladimir Falcon)
+2023-06-06 21e4922 Update extension name space to Cpsit\T3faq and raise compatibility for PHP 8.2 and TYPO3 11.5 (Vladimir Falcon)
