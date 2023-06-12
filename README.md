@@ -8,11 +8,11 @@ Frequently Asked Questions. This package is an extension to the TYPO3 system.
   first.
 
 ```
-composer config repositories.t3faq vcs git@git.dena.de:common/components/t3faq.git
+composer config repositories.t3faq vcs git@github.com:CPS-IT/t3faq.git
 ```
 
 ```
-composer require fr/t3faq
+composer require cpsit/t3faq
 ```
 
 ## Actions / Views

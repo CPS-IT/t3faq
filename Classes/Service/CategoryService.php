@@ -9,11 +9,11 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Service;
+namespace Cpsit\T3faq\Service;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Fr\T3faq\Domain\Model\Category;
-use Fr\T3faq\Domain\Repository\CategoryRepository;
+use Cpsit\T3faq\Domain\Model\Category;
+use Cpsit\T3faq\Domain\Repository\CategoryRepository;
 
 final class CategoryService
 {

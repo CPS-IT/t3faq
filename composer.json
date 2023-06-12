@@ -1,17 +1,24 @@
 {
-	"name": "fr/t3faq",
+	"name": "cpsit/t3faq",
 	"description": "Frequently Asked Questions. This package is an extension to the TYPO3 system.",
 	"homepage": "https://git.dena.de/common/components/t3faq",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
+	"repositories": {
+		"cps-utility": {
+			"type": "vcs",
+			"url": "git@github.com:CPS-IT/cps-utility.git"
+		}
+	},
 	"require": {
-		"typo3/cms-core": "^10.4",
-		"dwenzel/t3extension-tools": "^1.5",
-		"fr/fr-utility": "^4.0"
+		"php": "^8.2",
+		"typo3/cms-core": "^11.5",
+		"dwenzel/t3extension-tools": "^2.0",
+		"cpsit/cps-utility": "^1.0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-master",
-		"nimut/testing-framework": "^4.0 || ^5.0"
+		"nimut/testing-framework": "^6.0"
 	},
 	"extra": {
 		"typo3/cms": {
@@ -22,19 +29,19 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Fr\\T3faq\\": "Classes"
+			"Cpsit\\T3faq\\": "Classes"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Fr\\T3faq\\Tests\\": "Tests"
+			"Cpsit\\T3faq\\Tests\\": "Tests"
 		}
 	},
 	"config": {
 		"vendor-dir": ".Build/vendor/",
 		"bin-dir": ".Build/bin/",
 		"platform": {
-			"php": "7.4"
+			"php": "8.2"
 		}
 	},
 	"scripts": {

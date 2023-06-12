@@ -10,7 +10,7 @@ namespace Unit\Domain\Model\Dto;
  * of the License, or any later version.
  */
 
-use Fr\T3faq\Domain\Model\Dto\QuestionDemand;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 
 class QuestionDemandTest extends \PHPUnit\Framework\TestCase
 {
@@ -20,7 +20,7 @@ class QuestionDemandTest extends \PHPUnit\Framework\TestCase
      */
     protected $subject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new QuestionDemand();
     }

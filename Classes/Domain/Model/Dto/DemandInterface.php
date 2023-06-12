@@ -9,7 +9,7 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Domain\Model\Dto;
+namespace Cpsit\T3faq\Domain\Model\Dto;
 
 interface DemandInterface
 {

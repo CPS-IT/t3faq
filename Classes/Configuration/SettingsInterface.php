@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Fr\T3faq\Configuration;
+namespace Cpsit\T3faq\Configuration;
 
 /*
  * This file is part of the t3faq project.
@@ -18,7 +18,7 @@ interface SettingsInterface
 {
     public const ICON_IDENTIFIER_QUESTION = 't3faq-question';
 
-    public const FE_CACHE_TAG_FAQ = 'faqs';
+    public const FE_CACHE_TAG_FAQ = 'cpsit-faqs';
     public const VIEW_VAR_QUESTIONS = 'questions';
     public const VIEW_VAR_CATEGORY_TREE = 'categoryTree';
 

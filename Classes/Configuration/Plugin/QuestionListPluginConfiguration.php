@@ -1,6 +1,6 @@
 <?php
 
-namespace Fr\T3faq\Configuration\Plugin;
+namespace Cpsit\T3faq\Configuration\Plugin;
 
 /*
  * This file is part of the t3faq project.
@@ -10,9 +10,10 @@ namespace Fr\T3faq\Configuration\Plugin;
  * of the License, or any later version.
  */
 
+use Cpsit\T3faq\Controller\QuestionController;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
-use Fr\T3faq\Configuration\Extension;
+use Cpsit\T3faq\Configuration\Extension;
 
 /**
  * Class QuestionListPluginConfiguration
@@ -28,7 +29,7 @@ class QuestionListPluginConfiguration implements PluginConfigurationInterface
 
     static protected $flexForm = 'FILE:EXT:t3faq/Configuration/FlexForms/QuestionListPlugin.xml';
     static protected $controllerActions = [
-        'Question' => 'list'
+        QuestionController::class => 'list'
     ];
 
     static protected $nonCacheableControllerActions = [];

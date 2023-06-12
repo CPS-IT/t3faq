@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Unit\Domain\Model\Dto;
 
-use Fr\T3faq\Configuration\SettingsInterface as SI;
-use Fr\T3faq\Domain\Model\Dto\CategoryDemand;
-use Fr\T3faq\Domain\Model\Dto\DemandInterface;
-use Fr\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
+use Cpsit\T3faq\Configuration\SettingsInterface as SI;
+use Cpsit\T3faq\Domain\Model\Dto\CategoryDemand;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
 use PHPUnit\Framework\TestCase;
 
 class CategoryDemandFromSettingsTest extends TestCase
@@ -45,7 +45,7 @@ class CategoryDemandFromSettingsTest extends TestCase
             'Demand is instance of ' . DemandInterface::class
         );
         self::assertEquals($settings[SI::SETTING_CATEGORY_SORTING], $demand->getSorting());
-        self::assertContains($settings[SI::SETTING_CATEGORY_STORAGE_ID], $demand->getPageIds());
+        self::assertContains((int) $settings[SI::SETTING_CATEGORY_STORAGE_ID], $demand->getPageIds());
         self::assertEquals(explode(',', $settings[SI::SETTING_CATEGORIES_LIST]), $demand->getCategoryIds());
     }
 }

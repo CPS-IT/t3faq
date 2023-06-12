@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Fr\T3faq\Tests\Unit\Configuration;
+namespace Cpsit\T3faq\Tests\Unit\Configuration;
 
 /*
  * This file is part of the t3faq project.
@@ -11,9 +11,9 @@ namespace Fr\T3faq\Tests\Unit\Configuration;
  * of the License, or any later version.
  */
 
-use Fr\T3faq\Domain\Model\Question;
+use Cpsit\T3faq\Domain\Model\Question;
 use PHPUnit\Framework\TestCase;
-use Fr\T3faq\Domain\Model\Category;
+use Cpsit\T3faq\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
@@ -24,7 +24,7 @@ class QuestionTest extends TestCase
      */
     protected $subject;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->subject = new Question();
     }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Fr\T3faq\Tests\Functional\Domain\Repository;
+namespace Cpsit\T3faq\Tests\Functional\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -20,8 +20,8 @@ namespace Fr\T3faq\Tests\Functional\Domain\Repository;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use Fr\T3faq\Domain\Model\Dto\QuestionDemand;
-use Fr\T3faq\Domain\Repository\QuestionRepository;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
+use Cpsit\T3faq\Domain\Repository\QuestionRepository;
 use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -54,7 +54,7 @@ class QuestionRepositoryTest extends FunctionalTestCase
      */
     protected $result;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         /** @var ObjectManager|ObjectManagerInterface $objectManager */

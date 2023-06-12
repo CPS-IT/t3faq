@@ -9,10 +9,10 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Fr\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator;
+namespace Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator;
 
-use Fr\T3faq\Configuration\SettingsInterface as SI;
-use Fr\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Configuration\SettingsInterface as SI;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class QuestionIdsFromSettingsDecorator extends AbstractQuestionDemandFromSettingsDecorator
