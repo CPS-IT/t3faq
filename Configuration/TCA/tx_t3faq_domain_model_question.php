@@ -29,10 +29,7 @@ return [
         ],
 
     ],
-    'interface' => [
-        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,' .
-            'hidden,starttime,endtime,question,answer,categories,weight,information_date',
-    ],
+    'interface' => [],
     'columns' => [
         'hidden' => [
             'exclude' => true,
@@ -79,7 +76,6 @@ return [
             ],
         ],
         'l10n_parent' => [
-            'exclude' => true,
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
@@ -101,17 +97,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'all languages',
-                        -1,
-                        'flags-multiple',
-                    ],
-                ],
-                'default' => 0,
+                'type' => 'language',
             ],
         ],
         'l10n_diffsource' => [
@@ -208,7 +194,36 @@ return [
                 'readOnly' => true,
             ],
         ],
-
+        'categories' => [
+            'exclude' => false,
+            'l10n_mode' => 'exclude',
+            'label' => $ll . 'question.categories',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectTree',
+                'minitems' => 0,
+                'maxitems' => 99,
+                'foreign_table' => 'sys_category',
+                'foreign_table_where' => ' AND {#sys_category}.{#sys_language_uid} IN (-1, 0)
+                    ORDER BY sys_category.sorting',
+                'MM' => 'sys_category_record_mm',
+                'MM_opposite_field' => 'items',
+                'MM_match_fields' => [
+                    'fieldname' => 'categories',
+                    'tablenames' => \Cpsit\T3faq\Domain\Model\Question::TABLE_NAME,
+                ],
+                'treeConfig' => [
+                    'parentField' => 'parent',
+                    'appearance' => [
+                        'maxLevels' => 2,
+                        'expandAll' => false
+                    ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
+        ],
     ],
     'types' => [
         '0' => [
