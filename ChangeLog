@@ -1,3 +1,6 @@
+2023-07-12         [RELEASE] Release of t3faq 2.0.1 (Vladimir Falcon)
+2023-07-12 f536615 Fixed TCA deprecations (Vladimir Falcon)
+
 2023-06-12         [RELEASE] Release of t3faq 2.0.0 (Vladimir Falcon)
 2023-06-12 6027a6e Update  cpsit/cps-utility dependency (Vladimir Falcon)
 2023-06-07 c49ebde Fixed function call is_callable(). (Vladimir Falcon)
