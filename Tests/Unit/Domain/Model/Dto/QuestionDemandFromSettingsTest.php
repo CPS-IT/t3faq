@@ -46,7 +46,7 @@ class QuestionDemandFromSettingsTest extends TestCase
             'Demand is instance of ' . DemandInterface::class
         );
         self::assertEquals($settings[SI::SETTING_FAQ_SORTING], $demand->getSorting());
-        self::assertContains((int) $settings[SI::SETTING_FAQ_STORAGE_ID], $demand->getPageIds());
+        self::assertContains((int)$settings[SI::SETTING_FAQ_STORAGE_ID], $demand->getPageIds());
         self::assertEquals(explode(',', $settings[SI::SETTING_LIST_SELECTED_QUESTIONS]), $demand->getQuestionIds());
     }
 }

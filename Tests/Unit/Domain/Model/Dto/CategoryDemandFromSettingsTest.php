@@ -45,7 +45,7 @@ class CategoryDemandFromSettingsTest extends TestCase
             'Demand is instance of ' . DemandInterface::class
         );
         self::assertEquals($settings[SI::SETTING_CATEGORY_SORTING], $demand->getSorting());
-        self::assertContains((int) $settings[SI::SETTING_CATEGORY_STORAGE_ID], $demand->getPageIds());
+        self::assertContains((int)$settings[SI::SETTING_CATEGORY_STORAGE_ID], $demand->getPageIds());
         self::assertEquals(explode(',', $settings[SI::SETTING_CATEGORIES_LIST]), $demand->getCategoryIds());
     }
 }
