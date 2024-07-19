@@ -33,5 +33,5 @@ class QuestionListSelectedPluginConfiguration implements PluginConfigurationInte
     ];
 
     static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = Extension::VENDOR_NAME . '.' . Extension::KEY;
+    static protected $vendorExtensionName = Extension::KEY;
 }

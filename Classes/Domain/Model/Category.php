@@ -29,8 +29,8 @@ class Category extends AbstractEntity
 
     /**
      * @var string
-     * @Extbase\Validate("NotEmpty")
      */
+    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected string $title = '';
 
     /**
@@ -42,8 +42,8 @@ class Category extends AbstractEntity
      * Questions
      *
      * @var ObjectStorage<\Cpsit\T3faq\Domain\Model\Question>
-     * @Lazy
      */
+    #[Lazy]
     protected $faqs;
 
     /**
@@ -53,8 +53,8 @@ class Category extends AbstractEntity
 
     /**
      * @var Category|null
-     * @Lazy
      */
+    #[Lazy]
     protected $parent = null;
 
     public function __construct()

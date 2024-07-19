@@ -20,11 +20,11 @@ $faqsSysCategoryColumns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['', ''],
-                [$ll . 'sys_category.frame_class.blue', 'c-faq-category--pri1'],
-                [$ll . 'sys_category.frame_class.red', 'c-faq-category--pri2'],
-                [$ll . 'sys_category.frame_class.turquoise', 'c-faq-category--pri3'],
-                [$ll . 'sys_category.frame_class.yellow', 'c-faq-category--pri4'],
+                ['label' => '', 'value' => ''],
+                ['label' => $ll . 'sys_category.frame_class.blue', 'value' => 'c-faq-category--pri1'],
+                ['label' => $ll . 'sys_category.frame_class.red', 'value' => 'c-faq-category--pri2'],
+                ['label' => $ll . 'sys_category.frame_class.turquoise', 'value' => 'c-faq-category--pri3'],
+                ['label' => $ll . 'sys_category.frame_class.yellow', 'value' => 'c-faq-category--pri4'],
             ],
             'fieldWizard' => [
                 'selectIcons' => [
@@ -44,7 +44,6 @@ $faqsSysCategoryColumns = [
         'config' => [
             'type' => 'group',
             'size' => 5,
-            'internal_type' => 'db',
             'allowed' => 'tx_t3faq_domain_model_question',
             'foreign_table' => 'tx_t3faq_domain_model_question',
             'MM' => 'sys_category_record_mm',

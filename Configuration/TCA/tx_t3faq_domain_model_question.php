@@ -12,7 +12,6 @@ return [
         'sortby' => 'sorting',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'transOrigPointerField' => 'l10n_parent',
         'translationSource' => 'l10n_source',
@@ -29,7 +28,6 @@ return [
         ],
 
     ],
-    'interface' => [],
     'columns' => [
         'hidden' => [
             'exclude' => true,
@@ -39,8 +37,7 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                         'invertStateDisplay' => true,
                     ],
                 ],
@@ -50,9 +47,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -63,9 +58,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038),
@@ -83,8 +76,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        0,
+                        'label' => '',
+                        'value' => 0,
                     ],
                 ],
                 'foreign_table' => $tableName,
@@ -124,8 +117,9 @@ return [
             'config' => [
                 'type' => 'input',
                 'cols' => 80,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
                 'max' => 300,
+                'required' => true,
             ],
         ],
         'answer' => [
@@ -144,9 +138,9 @@ return [
             'exclude' => false,
             'label' => $ll . 'question.weight',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
-                'eval' => 'trim,int',
+                'eval' => 'trim',
                 'range' => [
                     'lower' => 0,
                     'upper' => 100,
@@ -162,23 +156,22 @@ return [
             'exclude' => false,
             'label' => $ll . 'question.information_date',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'date,int',
+                'type' => 'datetime',
                 'required' => false,
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
+                'format' => 'date',
             ],
         ],
         'likes' => [
             'exclude' => false,
             'label' => $ll . 'question.likes',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
-                'eval' => 'trim,int',
+                'eval' => 'trim',
                 'default' => 0,
                 'readOnly' => true,
             ],
@@ -187,9 +180,9 @@ return [
             'exclude' => false,
             'label' => $ll . 'question.dislikes',
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
-                'eval' => 'trim,int',
+                'eval' => 'trim',
                 'default' => 0,
                 'readOnly' => true,
             ],
