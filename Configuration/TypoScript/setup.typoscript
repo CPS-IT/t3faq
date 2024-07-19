@@ -14,15 +14,9 @@ plugin.tx_t3faq {
   }
 
   settings {
-    # Storage page and subpages
-    recursive = {$plugin.tx_t3faq.settings.recursive}
     listPid = {$dataStoragePages.faqs.0}
-    sorting = weight desc
     categoryPid = {$dataStoragePages.faq_sys_categories.0}
-    categoryPidRecursive = {$plugin.tx_t3faq.settings.categoryPidRecursive}
     categoryRoot = {$categories.faqs.rootUid}
-    ignoreRootCategory = 1
-    categorySorting = sorting asc
   }
 }
 
