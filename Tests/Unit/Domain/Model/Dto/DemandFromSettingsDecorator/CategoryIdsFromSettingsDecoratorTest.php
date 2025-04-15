@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 class CategoryIdsFromSettingsDecoratorTest extends TestCase
 {
-    public function testDecorate()
+    public function testDecorate(): void
     {
         $settings = [
             CategoryIdsFromSettingsDecorator::SETTING_KEY_CATEGORY_LIST => '3,5',

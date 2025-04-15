@@ -20,14 +20,14 @@ use PHPUnit\Framework\TestCase;
 class QuestionDemandFromSettingsTest extends TestCase
 {
 
-    public function testGetReturnsDemandInterface()
+    public function testGetReturnsDemandInterface(): void
     {
         $questionDemandFromSettingsProvider = new QuestionDemandFromSettings([]);
 
         self::assertInstanceOf(DemandInterface::class, $questionDemandFromSettingsProvider->get());
     }
 
-    public function testGetReturnsDecoratedDemandInterface()
+    public function testGetReturnsDecoratedDemandInterface(): void
     {
         $settings = [
             SI::SETTING_FAQ_STORAGE_ID => '41',

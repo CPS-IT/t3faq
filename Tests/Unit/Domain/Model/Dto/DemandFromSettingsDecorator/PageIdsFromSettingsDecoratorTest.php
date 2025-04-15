@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 
 class PageIdsFromSettingsDecoratorTest extends TestCase
 {
-    public function testDecorate()
+    public function testDecorate(): void
     {
         $settings = [
             PageIdsFromSettingsDecorator::SETTING_KEY_STORAGE_ID => '3,5',
