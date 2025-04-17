@@ -10,6 +10,7 @@ namespace Cpsit\T3faq\Configuration\Plugin;
  * of the License, or any later version.
  */
 
+use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Controller\QuestionController;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
@@ -21,6 +22,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 /**
  * Class QuestionListPluginConfiguration
  * Provides configuration for the FAQ
+ * Plugin Signature: t3faq_listselected
  */
 #[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 #[AutoconfigureTag('t3extensionTools.pluginRegistration')]
@@ -31,11 +33,11 @@ class QuestionListSelectedPluginConfiguration implements PluginConfigurationInte
 
     protected string $extensionName = Extension::KEY;
     protected string $pluginName = 'ListSelected';
-    protected string $pluginSignature = 't3faq_listselected';
     protected string $pluginTitle = 'LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:plugin.faq.list_selected.title';
     protected string $pluginDescription = 'Plugin for List of Selected Questions';
     protected string $pluginGroup = 'plugins';
     protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
+    protected string $pluginIcon = SI::ICON_IDENTIFIER_QUESTION;
     protected string $flexForm = 'FILE:EXT:t3faq/Configuration/FlexForms/QuestionListSelectedPlugin.xml';
     protected array $controllerActions = [
         QuestionController::class => 'listSelected'
