@@ -1,3 +1,14 @@
+2025-04-17         [RELEASE] Release of t3faq 3.0.0 (Dirk Wenzel)
+2025-04-17 1f68c8d missing icons added to plugin configuration (Dirk Wenzel)
+2025-04-16 ce983c7 [WIP] plugin registration refactored for dwenzel/t3extension-tools:^4.0 (Dirk Wenzel)
+2025-04-15 752de1c typo corrected (Dirk Wenzel)
+2025-04-15 b60e64c code cleanup in Tests/ (Dirk Wenzel)
+2025-04-15 eee2991 dependency dwenzel/t3extension-tools updated (Dirk Wenzel)
+2024-11-04 b2a31be [TASK] update required version of dwenzel/t3extension-tools (Juliane Wundermann)
+2024-07-19 d9d13bf Update setup.typoscript (knaporafr)
+2024-07-19 91a4e4c Update setup.typoscript (knaporafr)
+2024-07-19 96f4a84 TYPO3 v12 compatibility (Krzysztof Napora)
+
 2023-07-07         [RELEASE] Release of t3faq 2.0.2 (Vladimir Falcon)
 2023-07-07 458d92a Refactor format source (Vladimir Falcon)
 
