@@ -20,14 +20,14 @@ use PHPUnit\Framework\TestCase;
 class CategoryDemandFromSettingsTest extends TestCase
 {
 
-    public function testGetReturnsDemandInterface()
+    public function testGetReturnsDemandInterface(): void
     {
         $categoryDemandFromSettingsProvider = new CategoryDemandFromSettings([]);
 
         self::assertInstanceOf(DemandInterface::class, $categoryDemandFromSettingsProvider->get());
     }
 
-    public function testGetReturnsDecoratedDemandInterface()
+    public function testGetReturnsDecoratedDemandInterface(): void
     {
         $settings = [
             SI::SETTING_CATEGORY_STORAGE_ID => '41',

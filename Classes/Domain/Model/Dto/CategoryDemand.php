@@ -39,7 +39,7 @@ class CategoryDemand implements DemandInterface
      * @param int[] $pages
      * @return QuestionDemand
      */
-    public function setPageIds(array $pages)
+    public function setPageIds(array $pages): void
     {
         $this->pageIds = $pages;
     }

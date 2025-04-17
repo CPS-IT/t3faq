@@ -41,12 +41,12 @@ final class CategoryService
     public function getCategoryRootLine(int $uid): array
     {
         $rootlineIds = [];
-        $parentCategory = $this->categoryRepository->findOneByUid($uid);
+        $parentCategory = $this->categoryRepository->findOneBy(['uid' => $uid]);
 
         while ($parentCategory !== null) {
             $rootlineIds[] = $parentCategory;
             /** @var Category $childCategory */
-            $childCategory = $this->categoryRepository->findOneByUid($parentCategory);
+            $childCategory = $this->categoryRepository->findOneBy(['uid' => $parentCategory]);
             if ($childCategory === null) {
                 $parentCategory = 0;
             } else {

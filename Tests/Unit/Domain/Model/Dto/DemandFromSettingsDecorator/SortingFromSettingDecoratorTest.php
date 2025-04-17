@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 class SortingFromSettingDecoratorTest extends TestCase
 {
-    public function testDecorate()
+    public function testDecorate(): void
     {
         $settings = [
             SortingFromSettingDecorator::SETTING_KEY_SORTING => 'sorting asc',

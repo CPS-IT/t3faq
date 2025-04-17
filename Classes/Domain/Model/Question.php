@@ -39,8 +39,8 @@ class Question extends AbstractEntity
      * Categories
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Cpsit\T3faq\Domain\Model\Category>
-     * @Lazy
      */
+    #[Lazy]
     protected $categories;
 
     public function __construct()

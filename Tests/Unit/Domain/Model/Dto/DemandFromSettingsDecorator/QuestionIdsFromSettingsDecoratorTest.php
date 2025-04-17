@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 
 class QuestionIdsFromSettingsDecoratorTest extends TestCase
 {
-    public function testDecorate()
+    public function testDecorate(): void
     {
         $settings = [
             QuestionIdsFromSettingsDecorator::SETTING_KEY_QUESTION_IDS => '116,19,97,100',

@@ -54,7 +54,7 @@ final class CategoryRepository extends AbstractRepository
 
         if (!empty($constraints)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...$constraints)
             );
         }
         return $query->execute();

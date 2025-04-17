@@ -38,8 +38,9 @@ final class QuestionRepository extends AbstractRepository
     /**
      * @param DataMapper $dataMapper
      */
-    public function injectDataMapper(DataMapper $dataMapper)
+    public function __construct(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper)
     {
+        parent::__construct();
         $this->dataMapper = $dataMapper;
     }
 
@@ -57,7 +58,7 @@ final class QuestionRepository extends AbstractRepository
                 $categoryConstraint[] = $query->contains('categories', $category);
             }
             if (!empty($categoryConstraint)) {
-                $constraints[] = $query->logicalOr($categoryConstraint);
+                $constraints[] = $query->logicalOr(...$categoryConstraint);
             }
         }
 
