@@ -1,3 +1,6 @@
+2025-06-16         [RELEASE] Release of t3faq 3.0.1 (Dirk Wenzel)
+2025-06-16 aa19d0f [BUGFIX] fixed issue where plugin was not registered correctly caused by missing interface in QuestionLisSelectedPluginConfiguration (Dirk Wenzel)
+
 2025-04-17         [RELEASE] Release of t3faq 3.0.0 (Dirk Wenzel)
 2025-04-17 1f68c8d missing icons added to plugin configuration (Dirk Wenzel)
 2025-04-16 ce983c7 [WIP] plugin registration refactored for dwenzel/t3extension-tools:^4.0 (Dirk Wenzel)
