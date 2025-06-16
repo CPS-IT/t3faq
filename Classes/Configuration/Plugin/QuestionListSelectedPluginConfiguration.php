@@ -15,6 +15,7 @@ use Cpsit\T3faq\Controller\QuestionController;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\T3faq\Configuration\Extension;
+use DWenzel\T3extensionTools\Configuration\PluginRegistrationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginRegistrationTrait;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
@@ -26,7 +27,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
  */
 #[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 #[AutoconfigureTag('t3extensionTools.pluginRegistration')]
-class QuestionListSelectedPluginConfiguration implements PluginConfigurationInterface
+class QuestionListSelectedPluginConfiguration implements PluginConfigurationInterface, PluginRegistrationInterface
 {
     use PluginConfigurationTrait;
     use PluginRegistrationTrait;
