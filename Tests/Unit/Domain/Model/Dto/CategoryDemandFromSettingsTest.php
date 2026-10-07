@@ -9,19 +9,34 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Unit\Domain\Model\Dto;
+namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto;
 
+use Cpsit\CpsUtility\Utility\PageUtility;
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\CategoryDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CategoryDemandFromSettingsTest extends TestCase
 {
+    protected function tearDown(): void
+    {
+        GeneralUtility::purgeInstances();
+        parent::tearDown();
+    }
+
+    private function registerPageUtility(array $pageIds): void
+    {
+        $pageUtility = $this->createMock(PageUtility::class);
+        $pageUtility->method('resolveStoragePages')->willReturn($pageIds);
+        GeneralUtility::addInstance(PageUtility::class, $pageUtility);
+    }
 
     public function testGetReturnsDemandInterface(): void
     {
+        $this->registerPageUtility([0]);
         $categoryDemandFromSettingsProvider = new CategoryDemandFromSettings([]);
 
         self::assertInstanceOf(DemandInterface::class, $categoryDemandFromSettingsProvider->get());
@@ -35,6 +50,7 @@ class CategoryDemandFromSettingsTest extends TestCase
             SI::SETTING_CATEGORIES_LIST => '116,19,97,100',
         ];
 
+        $this->registerPageUtility([41]);
         $questionDemandFromSettingsProvider = new CategoryDemandFromSettings();
         /** @var CategoryDemand $demand */
         $demand = $questionDemandFromSettingsProvider->get($settings);
