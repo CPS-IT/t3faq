@@ -1,3 +1,7 @@
+2026-10-07         [RELEASE] Release of t3faq 3.1.0 (Vladimir Falcón Piva)
+2026-10-07 36863a1 [TASK] Update PHPUnit Tests/Build configs for typo3/testing-framework (Vladimir Falcón Piva)
+2026-10-07 bd53d9d [TASK] Migrate t3faq tests to typo3/testing-framework 8 and fix PageUtility mocks (Vladimir Falcón Piva)
+
 2025-12-12         [RELEASE] Release of t3faq 3.0.2 (Vladimir Falcón Piva)
 2025-12-12 587e79f [TASK] Update cpsit/cps-utility dependency to version 3.2 (Vladimir Falcón Piva)
 
