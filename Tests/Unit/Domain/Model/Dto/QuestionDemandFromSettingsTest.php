@@ -9,19 +9,34 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Unit\Domain\Model\Dto;
+namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto;
 
+use Cpsit\CpsUtility\Utility\PageUtility;
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class QuestionDemandFromSettingsTest extends TestCase
 {
+    protected function tearDown(): void
+    {
+        GeneralUtility::purgeInstances();
+        parent::tearDown();
+    }
+
+    private function registerPageUtility(array $pageIds): void
+    {
+        $pageUtility = $this->createMock(PageUtility::class);
+        $pageUtility->method('resolveStoragePages')->willReturn($pageIds);
+        GeneralUtility::addInstance(PageUtility::class, $pageUtility);
+    }
 
     public function testGetReturnsDemandInterface(): void
     {
+        $this->registerPageUtility([0]);
         $questionDemandFromSettingsProvider = new QuestionDemandFromSettings([]);
 
         self::assertInstanceOf(DemandInterface::class, $questionDemandFromSettingsProvider->get());
@@ -36,6 +51,7 @@ class QuestionDemandFromSettingsTest extends TestCase
 
         ];
 
+        $this->registerPageUtility([41]);
         $questionDemandFromSettingsProvider = new QuestionDemandFromSettings();
         /** @var QuestionDemand $demand */
         $demand = $questionDemandFromSettingsProvider->get($settings);

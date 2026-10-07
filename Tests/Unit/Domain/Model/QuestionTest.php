@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Cpsit\T3faq\Tests\Unit\Configuration;
+namespace Cpsit\T3faq\Tests\Unit\Domain\Model;
 
 /*
  * This file is part of the t3faq project.
