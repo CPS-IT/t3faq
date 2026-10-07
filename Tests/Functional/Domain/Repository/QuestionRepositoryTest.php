@@ -22,47 +22,22 @@ namespace Cpsit\T3faq\Tests\Functional\Domain\Repository;
 
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use Cpsit\T3faq\Domain\Repository\QuestionRepository;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QuestionRepositoryTest extends FunctionalTestCase
 {
-    /**
-     * @var QuestionRepository|MockObject
-     */
-    protected $subject;
+    protected QuestionRepository $subject;
 
-    /**
-     * @var ObjectManagerInterface
-     */
-    protected $objectManager;
+    protected array $testExtensionsToLoad = [
+        'cpsit/cps-utility',
+        'cpsit/t3faq',
+    ];
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/t3faq'];
-
-    /**
-     * @var QueryInterface|MockObject
-     */
-    protected $query;
-
-    /**
-     * @var QueryResultInterface|MockObject
-     */
-    protected $result;
-
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        /** @var ObjectManager|ObjectManagerInterface $objectManager */
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->subject = $this->objectManager->get(QuestionRepository::class);
-
-        $fixturePath = ORIGINAL_ROOT . 'typo3conf/ext/t3faq/Tests/Functional/Fixtures/Database/';
-        $this->importDataSet($fixturePath . 'tx_t3faq_domain_model_question.xml');
+        $this->subject = $this->get(QuestionRepository::class);
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Database/tx_t3faq_domain_model_question.csv');
     }
 
     public function testFindAll(): void

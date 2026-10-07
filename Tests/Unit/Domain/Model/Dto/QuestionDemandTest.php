@@ -1,6 +1,6 @@
 <?php
 
-namespace Unit\Domain\Model\Dto;
+namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto;
 
 /*
  * This file is part of the t3faq project.

@@ -9,7 +9,7 @@ declare(strict_types=1);
  * of the License, or any later version.
  */
 
-namespace Unit\Domain\Model\Dto\DemandFromSettingsDecorator;
+namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto\DemandFromSettingsDecorator;
 
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
