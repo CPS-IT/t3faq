@@ -5,10 +5,11 @@ variables:
   XDEBUG_MODE: 'coverage'
   COMPOSER_PROCESS_TIMEOUT: "1800"
   COMPOSER_COMMAND_PARAMETERS: --update-with-dependencies --prefer-stable --optimize-autoloader --no-progress
-  TYPO3_VERSION: ^7.6
+  TYPO3_VERSION: ^12.4
   TYPO3_PATH_WEB: "$CI_PROJECT_DIR/.Build/Web"
   MYSQL_DATABASE: "typo3"
   MYSQL_ROOT_PASSWORD: "joh316"
+  typo3DatabaseDriver: "mysqli"
   typo3DatabaseName: "typo3"
   typo3DatabaseHost: "mysql"
   typo3DatabaseUsername: "root"
@@ -27,7 +28,7 @@ stages:
 .test: &test-template
   stage: test
   services:
-    - mysql:5
+    - mysql:8
   image: webdevops/php-dev:$DOCKER_TAG
   only:
     - branches
@@ -42,14 +43,20 @@ stages:
   script:
     - XDEBUG_MODE=coverage composer test -- --colors=never --coverage-text
     - find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
-    - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}'
+    - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c Tests/Build/FunctionalTests.xml {}'
 
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
 
-# Test: PHP 7.4 and TYPO3 10.4
-test:php7.4:v10.4:
+# Test: PHP 8.2 and TYPO3 12.4
+test:php8.2:v12.4:
   <<: *test-template
   variables:
-    DOCKER_TAG: '7.4'
-    TYPO3_VERSION: ^10.4
+    DOCKER_TAG: '8.2'
+    TYPO3_VERSION: ^12.4
 
+# Test: PHP 8.3 and TYPO3 12.4
+test:php8.3:v12.4:
+  <<: *test-template
+  variables:
+    DOCKER_TAG: '8.3'
+    TYPO3_VERSION: ^12.4
