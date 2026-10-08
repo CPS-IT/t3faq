@@ -7,7 +7,7 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'familie redlich:digital',
     'author_email' => 'v.falcon@familie-redlich.de',
     'author_company' => 'familie redlich digital',
-    'version' => '3.1.0',
+    'version' => '3.1.1',
     'constraints' =>
         [
             'depends' =>
