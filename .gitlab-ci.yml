@@ -9,6 +9,7 @@ variables:
   TYPO3_PATH_WEB: "$CI_PROJECT_DIR/.Build/Web"
   MYSQL_DATABASE: "typo3"
   MYSQL_ROOT_PASSWORD: "joh316"
+  typo3DatabaseDriver: "mysqli"
   typo3DatabaseName: "typo3"
   typo3DatabaseHost: "mysql"
   typo3DatabaseUsername: "root"
@@ -42,7 +43,7 @@ stages:
   script:
     - XDEBUG_MODE=coverage composer test -- --colors=never --coverage-text
     - find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
-    - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}'
+    - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c Tests/Build/FunctionalTests.xml {}'
 
   coverage: '/^\s*Lines:\s*\d+.\d+\%/'
 
