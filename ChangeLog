@@ -1,3 +1,7 @@
+2026-10-08         [RELEASE] Release of t3faq 3.1.1 (Vladimir Falcón Piva)
+2026-10-08 d47a6d3 [TASK] Align CI matrix with composer requirements (PHP ^8.2, supported TYPO3 versions) (Vladimir Falcón Piva)
+2026-10-08 ecee5fb [TASK] Point CI phpunit jobs to Tests/Build configs of typo3/testing-framework (Vladimir Falcón Piva)
+
 2026-10-07         [RELEASE] Release of t3faq 3.1.0 (Vladimir Falcón Piva)
 2026-10-07 36863a1 [TASK] Update PHPUnit Tests/Build configs for typo3/testing-framework (Vladimir Falcón Piva)
 2026-10-07 bd53d9d [TASK] Migrate t3faq tests to typo3/testing-framework 8 and fix PageUtility mocks (Vladimir Falcón Piva)
