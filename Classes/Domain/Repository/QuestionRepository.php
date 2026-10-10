@@ -97,10 +97,14 @@ final class QuestionRepository extends AbstractRepository
             ->select('*')
             ->from(Question::TABLE_NAME)
             ->where($queryBuilder->expr()->in(Question::FIELD_UID, $uidList))
-            ->add('orderBy',
-                'FIELD(' . Question::TABLE_NAME . '.' . Question::FIELD_UID . ',' . implode(',', $uidList) . ')')
-            ->execute()
+            ->executeQuery()
             ->fetchAllAssociative();
+
+        $position = array_flip(array_map('intval', $uidList));
+        usort(
+            $rows,
+            static fn (array $a, array $b): int => $position[(int)$a[Question::FIELD_UID]] <=> $position[(int)$b[Question::FIELD_UID]]
+        );
 
         return $this->dataMapper->map(Question::class, $rows);
     }
