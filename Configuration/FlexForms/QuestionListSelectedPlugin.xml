@@ -6,28 +6,24 @@
     <sheets>
         <sDEF>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.tab.settings
-                    </sheetTitle>
-                </TCEforms>
+                <sheetTitle>LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.tab.settings
+                </sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.listSelectedQuestions>
-                        <TCEforms>
-                            <label>
-                                LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.settings.listSelectedQuestions
-                            </label>
-                            <config>
-                                <type>group</type>
-                                <internal_type>db</internal_type>
-                                <allowed>tx_t3faq_domain_model_question</allowed>
-                                <foreign_table>tx_t3faq_domain_model_question</foreign_table>
-                                <minitems>0</minitems>
-                                <maxitems>99</maxitems>
-                                <default>0</default>
-                                <size>5</size>
-                            </config>
-                        </TCEforms>
+                        <label>
+                            LLL:EXT:t3faq/Resources/Private/Language/locallang_be.xlf:flexform.settings.listSelectedQuestions
+                        </label>
+                        <config>
+                            <type>group</type>
+                            <internal_type>db</internal_type>
+                            <allowed>tx_t3faq_domain_model_question</allowed>
+                            <foreign_table>tx_t3faq_domain_model_question</foreign_table>
+                            <minitems>0</minitems>
+                            <maxitems>99</maxitems>
+                            <default>0</default>
+                            <size>5</size>
+                        </config>
                     </settings.listSelectedQuestions>
                 </el>
             </ROOT>
