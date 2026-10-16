@@ -5,10 +5,11 @@
 	"type": "typo3-cms-extension",
 	"homepage": "https://git.dena.de/common/components/t3faq",
 	"require": {
-		"php": "^8.2",
 		"cpsit/cps-utility": "^3.2",
-		"dwenzel/t3extension-tools": "^4.0 || ^5.0 || ^6.0",
-		"typo3/cms-core": "^12.4 || ^13.4"
+		"typo3/cms-core": "^13.4",
+		"typo3/cms-extbase": "^13.4",
+		"typo3/cms-frontend": "^13.4",
+		"typo3/cms-install": "^13.4"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.2",
@@ -43,9 +44,6 @@
 			"typo3/cms-composer-installers": true
 		},
 		"bin-dir": ".Build/bin/",
-		"platform": {
-			"php": "8.2"
-		},
 		"vendor-dir": ".Build/vendor/"
 	},
 	"extra": {
