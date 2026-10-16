@@ -1,0 +1,23 @@
+# configuration for linting of TypoScript files
+paths:
+  - Configuration
+filePatterns:
+  - "*.typoscript"
+  - "*.tsconfig"
+sniffs:
+  - class: Indentation
+    parameters:
+      useSpaces: true
+      indentPerLevel: 2
+      indentConditions: true
+  - class: DeadCode
+  - class: OperatorWhitespace
+  - class: RepeatingRValue
+    parameters:
+      allowedRightValues:
+        - "t3faq-question"
+  - class: DuplicateAssignment
+  - class: EmptySection
+  - class: NestingConsistency
+    parameters:
+      commonPathPrefixThreshold: 1

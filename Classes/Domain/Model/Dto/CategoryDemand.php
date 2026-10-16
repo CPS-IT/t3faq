@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -37,7 +38,6 @@ class CategoryDemand implements DemandInterface
 
     /**
      * @param int[] $pages
-     * @return QuestionDemand
      */
     public function setPageIds(array $pages): void
     {

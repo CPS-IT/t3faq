@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Configuration;
@@ -34,9 +35,7 @@ interface SettingsInterface
     public const SETTING_CATEGORY_SORTING = 'categorySorting';
 
     public const SETTING_IGNORE_ROOT_CATEGORY = 'ignoreRootCategory';
-    public const SETTING_SHOW_SEARCH_FORM = 'showSearchForm';
 
     public const SETTING_LIST_SELECTED_QUESTIONS = 'listSelectedQuestions';
-
 
 }

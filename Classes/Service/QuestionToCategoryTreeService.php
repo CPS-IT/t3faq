@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,20 +14,28 @@ namespace Cpsit\T3faq\Service;
 
 use Cpsit\T3faq\Domain\Model\Category;
 use Cpsit\T3faq\Domain\Model\Question;
-use Iterator;
-use phpDocumentor\Reflection\DocBlock\Tags\Reference\Url;
 
 final class QuestionToCategoryTreeService
 {
+    /** @var iterable<Category> */
     private iterable $categories;
+
+    /** @var iterable<Question> */
     private iterable $questions;
 
+    /**
+     * @param iterable<Question> $questions
+     * @param iterable<Category> $categories
+     */
     public function __construct(iterable $questions, iterable $categories)
     {
         $this->categories = $categories;
         $this->questions = $questions;
     }
 
+    /**
+     * @return array<int|string, array<string, mixed>>
+     */
     public function getQuestionCategoryTree(): array
     {
         $categories = $this->categoriesToArray();
@@ -35,6 +44,10 @@ final class QuestionToCategoryTreeService
         return $this->buildTree($categories);
     }
 
+    /**
+     * @param array<int|string, array<string, mixed>> $categories
+     * @return array<int|string, array<string, mixed>>
+     */
     private function questionsToCategories(array $categories): array
     {
         /** @var Question $question */
@@ -50,7 +63,10 @@ final class QuestionToCategoryTreeService
         return $categories;
     }
 
-    private function updateHasFaqsInCategories($category, &$categories): void
+    /**
+     * @param array<int|string, array<string, mixed>> $categories
+     */
+    private function updateHasFaqsInCategories(Category $category, array &$categories): void
     {
         $categories[$category->getUid()]['hasFaqs'] = true;
         $parentCategory = $category->getParent();
@@ -61,7 +77,9 @@ final class QuestionToCategoryTreeService
         }
     }
 
-
+    /**
+     * @return array<int|string, array<string, mixed>>
+     */
     private function categoriesToArray(): array
     {
         $categories = [];
@@ -75,27 +93,22 @@ final class QuestionToCategoryTreeService
         return $categories;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function categoryToArray(?Category $category = null): array
     {
-        $data = [];
-        if (!is_object($category)) {
-            return $data;
+        if ($category === null) {
+            return [];
         }
-        // Properties to include in array
-        $properties = [
-            Category::FIELD_UID,
-            Category::FIELD_TITLE,
-            Category::FIELD_DESCRIPTION,
-            Category::FIELD_FRAME_CLASS,
-            Category::FIELD_PARENT,
-        ];
 
-        foreach ($properties as $property) {
-            $method = 'get' . ucfirst($property);
-            if (is_callable([$category, $method])) {
-                $data[$property] = $category->$method();
-            }
-        }
+        $data = [
+            Category::FIELD_UID => $category->getUid(),
+            Category::FIELD_TITLE => $category->getTitle(),
+            Category::FIELD_DESCRIPTION => $category->getDescription(),
+            Category::FIELD_FRAME_CLASS => $category->getFrameClass(),
+            Category::FIELD_PARENT => $category->getParent(),
+        ];
 
         if ($data[Category::FIELD_PARENT] === null) {
             $data[Category::FIELD_PARENT] = 0;
@@ -108,6 +121,10 @@ final class QuestionToCategoryTreeService
         return $data;
     }
 
+    /**
+     * @param array<int|string, array<string, mixed>> $data
+     * @return array<int|string, array<string, mixed>>
+     */
     private function buildTree(
         array $data,
         string $parentKey = 'parent',
@@ -122,7 +139,7 @@ final class QuestionToCategoryTreeService
             foreach ($siblings as $k => $sibling) {
                 $id = $sibling[$idKey] ?? null;
                 if (isset($grouped[$id])) {
-                    $sibling[$childrenKey] = $fnBuilder($grouped[$id], $idKey, $childrenKey);
+                    $sibling[$childrenKey] = $fnBuilder($grouped[$id]);
                 }
                 $siblings[$k] = $sibling;
             }

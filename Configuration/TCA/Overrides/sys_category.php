@@ -4,7 +4,6 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') or die();
 
-
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_t3faq_domain_model_question']
     = ['categories'];
 
@@ -34,9 +33,8 @@ $faqsSysCategoryColumns = [
             'default' => '',
             'size' => 1,
             'maxitems' => 1,
-        ]
+        ],
     ],
-
 
     'faqs' => [
         'exclude' => true,
@@ -51,13 +49,12 @@ $faqsSysCategoryColumns = [
                 'fieldname' => 'categories',
                 'tablenames' => 'tx_t3faq_domain_model_question',
             ],
-            'maxitems' => 1000
+            'maxitems' => 1000,
         ],
     ],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('sys_category', $faqsSysCategoryColumns);
-
 
 // Reinsert position and company after last name
 ExtensionManagementUtility::addToAllTCAtypes(

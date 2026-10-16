@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,7 +12,6 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator;
 
-use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 
 class SortingFromSettingDecorator extends AbstractQuestionDemandFromSettingsDecorator

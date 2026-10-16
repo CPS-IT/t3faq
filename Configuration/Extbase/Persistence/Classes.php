@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -12,5 +13,5 @@ declare(strict_types=1);
 return [
     \Cpsit\T3faq\Domain\Model\Category::class => [
         'tableName' => 'sys_category',
-    ]
+    ],
 ];

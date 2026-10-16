@@ -56,6 +56,10 @@
 				<source>Show search form</source>
 				<target>Suchformular anzeigen</target>
 			</trans-unit>
+			<trans-unit id="tab.configuration">
+				<source>Configuration</source>
+				<target>Konfiguration</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

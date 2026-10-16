@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,10 +12,8 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto\DemandFromSettingsDecorator;
 
-use Cpsit\T3faq\Configuration\SettingsInterface as SI;
-use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\QuestionIdsFromSettingsDecorator;
-use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\SortingFromSettingDecorator;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use PHPUnit\Framework\TestCase;
 
 class QuestionIdsFromSettingsDecoratorTest extends TestCase
@@ -26,8 +25,10 @@ class QuestionIdsFromSettingsDecoratorTest extends TestCase
         ];
         $component = new QuestionDemand();
         $decorator = new QuestionIdsFromSettingsDecorator($component, $settings);
+        $decorator->decorate();
         self::assertEquals(
             explode(',', $settings[QuestionIdsFromSettingsDecorator::SETTING_KEY_QUESTION_IDS]),
-            $decorator->decorate()->getQuestionIds());
+            $component->getQuestionIds()
+        );
     }
 }

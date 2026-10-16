@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Tests\Functional\Domain\Repository;
@@ -21,7 +22,10 @@ namespace Cpsit\T3faq\Tests\Functional\Domain\Repository;
  ***************************************************************/
 
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
+use Cpsit\T3faq\Domain\Model\Question;
 use Cpsit\T3faq\Domain\Repository\QuestionRepository;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QuestionRepositoryTest extends FunctionalTestCase
@@ -70,4 +74,53 @@ class QuestionRepositoryTest extends FunctionalTestCase
         );
     }
 
+    public function testFindByUidListKeepsTheOrderOfTheUidList(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Database/question_uid_list.csv');
+
+        $result = $this->subject->findByUidList([12, 10, 11]);
+
+        self::assertSame([12, 10, 11], $this->uidsOf($result));
+    }
+
+    public function testFindByUidListIgnoresUnknownUids(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Database/question_uid_list.csv');
+
+        $result = $this->subject->findByUidList([13, 999, 10]);
+
+        self::assertSame([13, 10], $this->uidsOf($result));
+    }
+
+    public function testFindByUidListReturnsEmptyArrayForEmptyList(): void
+    {
+        self::assertSame([], $this->subject->findByUidList([]));
+    }
+
+    public function testFindByUidListWorksWithInjectedConnectionPool(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Database/question_uid_list.csv');
+        $subject = new QuestionRepository(
+            $this->get(DataMapper::class),
+            $this->get(ConnectionPool::class)
+        );
+
+        self::assertSame([11, 13], $this->uidsOf($subject->findByUidList([11, 13])));
+    }
+
+    /**
+     * @param array<int, object> $questions
+     * @return int[]
+     */
+    private function uidsOf(array $questions): array
+    {
+        return array_map(
+            static function (object $question): int {
+                self::assertInstanceOf(Question::class, $question);
+
+                return (int)$question->getUid();
+            },
+            $questions
+        );
+    }
 }

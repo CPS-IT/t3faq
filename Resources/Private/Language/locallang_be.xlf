@@ -42,6 +42,9 @@
 			<trans-unit id="flexform.settings.showSearchForm">
 				<source>Show search form</source>
 			</trans-unit>
+			<trans-unit id="tab.configuration">
+				<source>Configuration</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

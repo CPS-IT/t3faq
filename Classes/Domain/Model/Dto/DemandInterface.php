@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,5 +14,15 @@ namespace Cpsit\T3faq\Domain\Model\Dto;
 
 interface DemandInterface
 {
+    /**
+     * @return int[]
+     */
+    public function getPageIds(): array;
 
+    /**
+     * @return int[]
+     */
+    public function getCategoryIds(): array;
+
+    public function getSorting(): string;
 }
