@@ -16,7 +16,6 @@ use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Question;
 use Doctrine\DBAL\ArrayParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
@@ -40,11 +39,10 @@ final class QuestionRepository extends AbstractRepository
      */
     protected $dataMapper;
 
-    /**
-     * @param DataMapper $dataMapper
-     */
-    public function __construct(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper)
-    {
+    public function __construct(
+        DataMapper $dataMapper,
+        private readonly ConnectionPool $connectionPool
+    ) {
         parent::__construct();
         $this->dataMapper = $dataMapper;
     }
@@ -100,7 +98,7 @@ final class QuestionRepository extends AbstractRepository
             return [];
         }
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        $queryBuilder = $this->connectionPool
             ->getQueryBuilderForTable(Question::TABLE_NAME);
 
         $rows = $queryBuilder
