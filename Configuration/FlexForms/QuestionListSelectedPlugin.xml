@@ -16,7 +16,6 @@
                         </label>
                         <config>
                             <type>group</type>
-                            <internal_type>db</internal_type>
                             <allowed>tx_t3faq_domain_model_question</allowed>
                             <foreign_table>tx_t3faq_domain_model_question</foreign_table>
                             <minitems>0</minitems>
