@@ -23,6 +23,7 @@ use Cpsit\T3faq\Domain\Repository\QuestionRepository;
 use Cpsit\T3faq\Service\QuestionToCategoryTreeService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 
 /**
  * Class QuestionController
@@ -56,8 +57,9 @@ class QuestionController extends ActionController
     protected function prepareView(): void
     {
         $this->view->assign('contentObjectData', $this->request->getAttribute('currentContentObject')->data);
-        if (is_object($GLOBALS['TSFE'])) {
-            $this->view->assign('pageData', $GLOBALS['TSFE']->page);
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
+        if ($pageInformation instanceof PageInformation) {
+            $this->view->assign('pageData', $pageInformation->getPageRecord());
         }
     }
 
