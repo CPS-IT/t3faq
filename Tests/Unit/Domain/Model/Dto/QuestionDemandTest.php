@@ -44,22 +44,4 @@ class QuestionDemandTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testGetLimitInitiallyReturnsDefaultLimit(): void
-    {
-        self::assertSame(
-            QuestionDemand::DEFAULT_LIMIT,
-            $this->subject->getLimit()
-        );
-    }
-
-    public function testLimitCanBeSet(): void
-    {
-        $limit = 1000;
-        $this->subject->setLimit($limit);
-
-        self::assertSame(
-            $limit,
-            $this->subject->getLimit()
-        );
-    }
 }

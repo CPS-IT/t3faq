@@ -16,7 +16,6 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class Category extends AbstractEntity
 {
@@ -39,14 +38,6 @@ class Category extends AbstractEntity
     protected string $description = '';
 
     /**
-     * Questions
-     *
-     * @var ObjectStorage<\Cpsit\T3faq\Domain\Model\Question>
-     */
-    #[Lazy]
-    protected $faqs;
-
-    /**
      * @var string
      */
     protected string $frameClass = '';
@@ -57,53 +48,14 @@ class Category extends AbstractEntity
     #[Lazy]
     protected $parent;
 
-    public function __construct()
-    {
-        $this->initStorageObjects();
-    }
-
-    /**
-     * Initializes all object storage properties
-     */
-    protected function initStorageObjects(): void
-    {
-        $this->faqs = new ObjectStorage();
-    }
-
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return ObjectStorage<Question>
-     */
-    public function getFaqs(): ObjectStorage
-    {
-        return $this->faqs;
-    }
-
-    /**
-     * @param ObjectStorage<Question> $faqs
-     */
-    public function setFaqs(ObjectStorage $faqs): void
-    {
-        $this->faqs = $faqs;
     }
 
     /**
@@ -119,28 +71,13 @@ class Category extends AbstractEntity
         return $this->parent;
     }
 
-    public function setParent(Category $parent): void
-    {
-        $this->parent = $parent;
-    }
-
     public function getUid(): int
     {
         return $this->uid;
     }
 
-    public function setUid(int $uid): void
-    {
-        $this->uid = $uid;
-    }
-
     public function getFrameClass(): string
     {
         return $this->frameClass;
-    }
-
-    public function setFrameClass(string $frameClass): void
-    {
-        $this->frameClass = $frameClass;
     }
 }
