@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -27,6 +28,9 @@ class CategoryDemandFromSettingsTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * @param int[] $pageIds
+     */
     private function registerPageUtility(array $pageIds): void
     {
         $pageUtility = $this->createMock(PageUtility::class);
@@ -37,7 +41,7 @@ class CategoryDemandFromSettingsTest extends TestCase
     public function testGetReturnsDemandInterface(): void
     {
         $this->registerPageUtility([0]);
-        $categoryDemandFromSettingsProvider = new CategoryDemandFromSettings([]);
+        $categoryDemandFromSettingsProvider = new CategoryDemandFromSettings();
 
         self::assertInstanceOf(DemandInterface::class, $categoryDemandFromSettingsProvider->get());
     }

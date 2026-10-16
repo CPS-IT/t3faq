@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,16 +14,24 @@ namespace Cpsit\T3faq\Domain\Repository;
 
 use Cpsit\T3faq\Domain\Model\Category;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
+/**
+ * @extends AbstractRepository<Category>
+ */
 final class CategoryRepository extends AbstractRepository
 {
     protected $defaultOrderings = [
-        Category::FIELD_SORTING => QueryInterface::ORDER_ASCENDING
+        Category::FIELD_SORTING => QueryInterface::ORDER_ASCENDING,
     ];
 
+    /**
+     * @param QueryInterface<Category> $query
+     * @return array<int, ConstraintInterface>
+     */
     protected function getDemandConstraints(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
@@ -40,23 +49,24 @@ final class CategoryRepository extends AbstractRepository
         return $constraints;
     }
 
+    /**
+     * @param int[] $pidList
+     * @return QueryResultInterface<int, Category>
+     */
     public function findByPidList(array $pidList, string $sorting): QueryResultInterface
     {
-        /** @var Query $query */
+        /** @var Query<Category> $query */
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
-        $constraints[] = $query->in('pid', $pidList);
+        $constraint = $query->in('pid', $pidList);
 
         if (!empty($orderings = $this->getOrderings($sorting))) {
             $query->setOrderings($orderings);
         }
 
-        if (!empty($constraints)) {
-            $query->matching(
-                $query->logicalAnd(...$constraints)
-            );
-        }
+        $query->matching($query->logicalAnd($constraint));
+
         return $query->execute();
     }
 }

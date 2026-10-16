@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -12,7 +13,6 @@ declare(strict_types=1);
 namespace Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator;
 
 use Cpsit\CpsUtility\Utility\PageUtility;
-use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -25,7 +25,7 @@ class PageIdsFromSettingsDecorator extends AbstractQuestionDemandFromSettingsDec
     {
         /** @var PageUtility $pageUtility */
         $pageUtility = GeneralUtility::makeInstance(PageUtility::class);
-        $recursive = (int)$this->settings[self::SETTING_KEY_RECURSIVE] ?? 0;
+        $recursive = (int)($this->settings[self::SETTING_KEY_RECURSIVE] ?? 0);
 
         $storageIds = '0';
         if (!empty($this->settings[self::SETTING_KEY_STORAGE_ID])) {

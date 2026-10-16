@@ -14,7 +14,6 @@ use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 
 class QuestionDemandTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @var QuestionDemand
      */

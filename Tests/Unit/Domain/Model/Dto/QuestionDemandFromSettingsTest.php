@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -14,8 +15,8 @@ namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto;
 use Cpsit\CpsUtility\Utility\PageUtility;
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
-use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -27,6 +28,9 @@ class QuestionDemandFromSettingsTest extends TestCase
         parent::tearDown();
     }
 
+    /**
+     * @param int[] $pageIds
+     */
     private function registerPageUtility(array $pageIds): void
     {
         $pageUtility = $this->createMock(PageUtility::class);
@@ -37,7 +41,7 @@ class QuestionDemandFromSettingsTest extends TestCase
     public function testGetReturnsDemandInterface(): void
     {
         $this->registerPageUtility([0]);
-        $questionDemandFromSettingsProvider = new QuestionDemandFromSettings([]);
+        $questionDemandFromSettingsProvider = new QuestionDemandFromSettings();
 
         self::assertInstanceOf(DemandInterface::class, $questionDemandFromSettingsProvider->get());
     }

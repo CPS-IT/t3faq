@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Model;
@@ -11,12 +12,11 @@ namespace Cpsit\T3faq\Domain\Model;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
-
 
 class Category extends AbstractEntity
 {
@@ -52,10 +52,10 @@ class Category extends AbstractEntity
     protected string $frameClass = '';
 
     /**
-     * @var Category|null
+     * @var Category|LazyLoadingProxy|null
      */
     #[Lazy]
-    protected $parent = null;
+    protected $parent;
 
     public function __construct()
     {
@@ -70,12 +70,12 @@ class Category extends AbstractEntity
         $this->faqs = new ObjectStorage();
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -85,17 +85,22 @@ class Category extends AbstractEntity
         return $this->description;
     }
 
-    public function setDescription($description): void
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
 
+    /**
+     * @return ObjectStorage<Question>
+     */
     public function getFaqs(): ObjectStorage
     {
         return $this->faqs;
     }
 
-
+    /**
+     * @param ObjectStorage<Question> $faqs
+     */
     public function setFaqs(ObjectStorage $faqs): void
     {
         $this->faqs = $faqs;
@@ -104,7 +109,7 @@ class Category extends AbstractEntity
     /**
      * Gets the parent category.
      *
-     * @return Category|null the parent category
+     * @return Category|LazyLoadingProxy|null the parent category
      */
     public function getParent()
     {

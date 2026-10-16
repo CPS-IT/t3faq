@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,12 +12,8 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto\DemandFromSettingsDecorator;
 
-use Cpsit\T3faq\Configuration\SettingsInterface as SI;
-use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\CategoryIdsFromSettingsDecorator;
-use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\PageIdsFromSettingsDecorator;
-use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\QuestionIdsFromSettingsDecorator;
-use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\SortingFromSettingDecorator;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use PHPUnit\Framework\TestCase;
 
 class CategoryIdsFromSettingsDecoratorTest extends TestCase
@@ -25,7 +22,7 @@ class CategoryIdsFromSettingsDecoratorTest extends TestCase
     {
         $settings = [
             CategoryIdsFromSettingsDecorator::SETTING_KEY_CATEGORY_LIST => '3,5',
-            CategoryIdsFromSettingsDecorator::SETTING_KEY_INCLUDE_PARENT_CATEGORY => 0
+            CategoryIdsFromSettingsDecorator::SETTING_KEY_INCLUDE_PARENT_CATEGORY => 0,
 
         ];
         $component = new QuestionDemand();

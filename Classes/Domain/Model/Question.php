@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Model;
@@ -11,9 +12,9 @@ namespace Cpsit\T3faq\Domain\Model;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 
 class Question extends AbstractEntity
 {
@@ -91,7 +92,6 @@ class Question extends AbstractEntity
         return $this->informationDate;
     }
 
-
     /**
      * Returns categories
      *
@@ -130,11 +130,8 @@ class Question extends AbstractEntity
     public function getFirstCategory(): ?Category
     {
         $categories = $this->getCategories();
-        if (!is_null($categories)) {
-            $categories->rewind();
-            return $categories->current();
-        } else {
-            return null;
-        }
+        $categories->rewind();
+
+        return $categories->current();
     }
 }

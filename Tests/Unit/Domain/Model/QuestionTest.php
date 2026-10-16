@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Tests\Unit\Domain\Model;
@@ -11,11 +12,10 @@ namespace Cpsit\T3faq\Tests\Unit\Domain\Model;
  * of the License, or any later version.
  */
 
+use Cpsit\T3faq\Domain\Model\Category;
 use Cpsit\T3faq\Domain\Model\Question;
 use PHPUnit\Framework\TestCase;
-use Cpsit\T3faq\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
 class QuestionTest extends TestCase
 {
@@ -98,6 +98,7 @@ class QuestionTest extends TestCase
     public function testCategoriesCanBeSet(): void
     {
         $category = new Category();
+        /** @var ObjectStorage<Category> $storage */
         $storage = new ObjectStorage();
         $storage->attach($category);
 
@@ -124,6 +125,7 @@ class QuestionTest extends TestCase
     public function testCategoryCanBeRemoved(): void
     {
         $category = new Category();
+        /** @var ObjectStorage<Category> $storage */
         $storage = new ObjectStorage();
         $storage->attach($category);
 

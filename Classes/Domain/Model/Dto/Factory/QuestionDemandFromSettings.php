@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -12,12 +13,12 @@ declare(strict_types=1);
 namespace Cpsit\T3faq\Domain\Model\Dto\Factory;
 
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
-use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
-use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\CategoryIdsFromSettingsDecorator;
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\PageIdsFromSettingsDecorator;
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\QuestionIdsFromSettingsDecorator;
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\SortingFromSettingDecorator;
+use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -30,30 +31,33 @@ class QuestionDemandFromSettings extends AbstractDemandFromSettings
             'decorator' => PageIdsFromSettingsDecorator::class,
             'settings' => [
                 PageIdsFromSettingsDecorator::SETTING_KEY_RECURSIVE => SI::SETTING_FAQ_STORAGE_RECURSIVE,
-                PageIdsFromSettingsDecorator::SETTING_KEY_STORAGE_ID => SI::SETTING_FAQ_STORAGE_ID
-            ]
+                PageIdsFromSettingsDecorator::SETTING_KEY_STORAGE_ID => SI::SETTING_FAQ_STORAGE_ID,
+            ],
         ],
         'questionIds' => [
             'decorator' => QuestionIdsFromSettingsDecorator::class,
             'settings' => [
-                QuestionIdsFromSettingsDecorator::SETTING_KEY_QUESTION_IDS => SI::SETTING_LIST_SELECTED_QUESTIONS
-            ]
+                QuestionIdsFromSettingsDecorator::SETTING_KEY_QUESTION_IDS => SI::SETTING_LIST_SELECTED_QUESTIONS,
+            ],
         ],
         'categoryIds' => [
             'decorator' => CategoryIdsFromSettingsDecorator::class,
             'settings' => [
                 CategoryIdsFromSettingsDecorator::SETTING_KEY_CATEGORY_LIST => SI::SETTING_CATEGORIES_LIST,
                 CategoryIdsFromSettingsDecorator::SETTING_KEY_INCLUDE_PARENT_CATEGORY => SI::SETTING_CATEGORIES_LIST_INCLUDE_PARENT_CATEGORIES,
-            ]
+            ],
         ],
         'sorting' => [
             'decorator' => SortingFromSettingDecorator::class,
             'settings' => [
-                SortingFromSettingDecorator::SETTING_KEY_SORTING => SI::SETTING_FAQ_SORTING
-            ]
-        ]
+                SortingFromSettingDecorator::SETTING_KEY_SORTING => SI::SETTING_FAQ_SORTING,
+            ],
+        ],
     ];
 
+    /**
+     * @param array<string, mixed> $settings
+     */
     public function get(array $settings = []): DemandInterface
     {
         $demand = GeneralUtility::makeInstance(QuestionDemand::class);

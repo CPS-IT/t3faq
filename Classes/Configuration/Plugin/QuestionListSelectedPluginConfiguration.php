@@ -10,11 +10,11 @@ namespace Cpsit\T3faq\Configuration\Plugin;
  * of the License, or any later version.
  */
 
+use Cpsit\T3faq\Configuration\Extension;
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Controller\QuestionController;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
-use Cpsit\T3faq\Configuration\Extension;
 use DWenzel\T3extensionTools\Configuration\PluginRegistrationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginRegistrationTrait;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
@@ -40,8 +40,10 @@ class QuestionListSelectedPluginConfiguration implements PluginConfigurationInte
     protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
     protected string $pluginIcon = SI::ICON_IDENTIFIER_QUESTION;
     protected string $flexForm = 'FILE:EXT:t3faq/Configuration/FlexForms/QuestionListSelectedPlugin.xml';
+    /** @var array<class-string, string> */
     protected array $controllerActions = [
-        QuestionController::class => 'listSelected'
+        QuestionController::class => 'listSelected',
     ];
+    /** @var array<class-string, string> */
     protected array $nonCacheableControllerActions = [];
 }

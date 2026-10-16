@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Controller;
@@ -11,8 +12,8 @@ namespace Cpsit\T3faq\Controller;
  * of the License, or any later version.
  */
 
-use Cpsit\CpsUtility\Traits\FeCacheTagsTrait;
 use Cpsit\CpsUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
+use Cpsit\CpsUtility\Traits\FeCacheTagsTrait;
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
@@ -68,11 +69,10 @@ class QuestionController extends ActionController
         /**
          * Prepare questions for view to meet client grouping and sorting requirements
          */
-
         $categoryDemand = GeneralUtility::makeInstance(CategoryDemandFromSettings::class)->get($this->settings);
         $categories = $this->categoryRepository->findByPidList(
             $categoryDemand->getPageIds(),
-            $categoryDemand->getSorting() ?? ''
+            $categoryDemand->getSorting()
         );
 
         $testCat = $categories->getQuery()->execute()->toArray();
@@ -87,7 +87,7 @@ class QuestionController extends ActionController
         }
         $this->prepareView();
         $variables = [
-            SI::VIEW_VAR_CATEGORY_TREE => $questions
+            SI::VIEW_VAR_CATEGORY_TREE => $questions,
         ];
 
         $this->view->assignMultiple(

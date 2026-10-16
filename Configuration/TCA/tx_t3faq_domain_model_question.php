@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3') or die();
 
 $tableName = \Cpsit\T3faq\Domain\Model\Question::TABLE_NAME;
@@ -84,8 +85,8 @@ return [
                     ],
                 ],
                 'foreign_table' => $tableName,
-                'foreign_table_where' => 'AND ' . $tableName . '.uid=###CURRENT_PID### ' .
-                    'AND ' . $tableName . '.sys_language_uid = 0',
+                'foreign_table_where' => 'AND ' . $tableName . '.uid=###CURRENT_PID### '
+                    . 'AND ' . $tableName . '.sys_language_uid = 0',
                 'default' => 0,
             ],
         ],
@@ -212,13 +213,13 @@ return [
                     'parentField' => 'parent',
                     'appearance' => [
                         'maxLevels' => 2,
-                        'expandAll' => false
-                    ]
+                        'expandAll' => false,
+                    ],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
     ],
     'types' => [

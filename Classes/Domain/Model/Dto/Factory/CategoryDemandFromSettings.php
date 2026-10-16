@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the t3faq project.
  *
@@ -37,24 +38,27 @@ class CategoryDemandFromSettings extends AbstractDemandFromSettings
             'decorator' => PageIdsFromSettingsDecorator::class,
             'settings' => [
                 PageIdsFromSettingsDecorator::SETTING_KEY_RECURSIVE => SI::SETTING_CATEGORY_STORAGE_RECURSIVE,
-                PageIdsFromSettingsDecorator::SETTING_KEY_STORAGE_ID => SI::SETTING_CATEGORY_STORAGE_ID
-            ]
+                PageIdsFromSettingsDecorator::SETTING_KEY_STORAGE_ID => SI::SETTING_CATEGORY_STORAGE_ID,
+            ],
         ],
         'categoryIds' => [
             'decorator' => CategoryIdsFromSettingsDecorator::class,
             'settings' => [
                 CategoryIdsFromSettingsDecorator::SETTING_KEY_CATEGORY_LIST => SI::SETTING_CATEGORIES_LIST,
                 CategoryIdsFromSettingsDecorator::SETTING_KEY_INCLUDE_PARENT_CATEGORY => SI::SETTING_CATEGORIES_LIST_INCLUDE_PARENT_CATEGORIES,
-            ]
+            ],
         ],
         'sorting' => [
             'decorator' => SortingFromSettingDecorator::class,
             'settings' => [
-                SortingFromSettingDecorator::SETTING_KEY_SORTING => SI::SETTING_CATEGORY_SORTING
-            ]
-        ]
+                SortingFromSettingDecorator::SETTING_KEY_SORTING => SI::SETTING_CATEGORY_SORTING,
+            ],
+        ],
     ];
 
+    /**
+     * @param array<string, mixed> $settings
+     */
     public function get(array $settings = []): DemandInterface
     {
         $demand = GeneralUtility::makeInstance(CategoryDemand::class);

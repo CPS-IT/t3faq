@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,10 +12,17 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Model\Dto\Factory;
 
+use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\ComponentDemandDecoratorInterface;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 
 abstract class AbstractDemandFromSettings implements DemandFromSettingsFactoryInterface
 {
+    /** @var array<string, array{decorator: class-string<ComponentDemandDecoratorInterface>, settings: array<string, string>}> */
+    protected const PROPERTY_DECORATOR_MAP = [];
+
+    /**
+     * @param array<string, mixed> $settings
+     */
     protected function decorate(array $settings, DemandInterface $demand): void
     {
         if (!empty($settings) && !empty(static::PROPERTY_DECORATOR_MAP)) {
@@ -31,6 +39,11 @@ abstract class AbstractDemandFromSettings implements DemandFromSettingsFactoryIn
         }
     }
 
+    /**
+     * @param array<string, string> $settingsMap
+     * @param array<string, mixed> $settings
+     * @return array<string, mixed>
+     */
     protected function resolveSettingValueMap(array $settingsMap, array $settings): array
     {
         $resolvedSettings = [];

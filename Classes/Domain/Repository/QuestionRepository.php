@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,16 +12,20 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Repository;
 
-use Doctrine\DBAL\Query\QueryBuilder;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Question;
+use Doctrine\DBAL\ArrayParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
+/**
+ * @extends AbstractRepository<Question>
+ */
 final class QuestionRepository extends AbstractRepository
 {
     protected $defaultOrderings = [
@@ -44,6 +49,10 @@ final class QuestionRepository extends AbstractRepository
         $this->dataMapper = $dataMapper;
     }
 
+    /**
+     * @param QueryInterface<Question> $query
+     * @return array<int, ConstraintInterface>
+     */
     protected function getDemandConstraints(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
@@ -54,20 +63,22 @@ final class QuestionRepository extends AbstractRepository
         }
 
         if (!empty($categories = $demand->getCategoryIds())) {
+            $categoryConstraint = [];
             foreach ($categories as $category) {
                 $categoryConstraint[] = $query->contains('categories', $category);
             }
-            if (!empty($categoryConstraint)) {
-                $constraints[] = $query->logicalOr(...$categoryConstraint);
-            }
+            $constraints[] = $query->logicalOr(...$categoryConstraint);
         }
 
         return $constraints;
     }
 
+    /**
+     * @return QueryResultInterface<int, Question>
+     */
     public function findByCategory(int $category): QueryResultInterface
     {
-        /** @var Query $query */
+        /** @var Query<Question> $query */
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
@@ -79,7 +90,7 @@ final class QuestionRepository extends AbstractRepository
      * Returns all matching records for the given list of uids and applies the uidList sorting for the result
      *
      * @param int[] $uidList
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return array<int, object>
      * @throws \Doctrine\DBAL\Driver\Exception
      * @throws \Doctrine\DBAL\Exception
      */
@@ -89,21 +100,23 @@ final class QuestionRepository extends AbstractRepository
             return [];
         }
 
-        /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable(Question::TABLE_NAME);
 
         $rows = $queryBuilder
             ->select('*')
             ->from(Question::TABLE_NAME)
-            ->where($queryBuilder->expr()->in(Question::FIELD_UID, $uidList))
+            ->where($queryBuilder->expr()->in(
+                Question::FIELD_UID,
+                $queryBuilder->createNamedParameter($uidList, ArrayParameterType::INTEGER)
+            ))
             ->executeQuery()
             ->fetchAllAssociative();
 
         $position = array_flip(array_map('intval', $uidList));
         usort(
             $rows,
-            static fn (array $a, array $b): int => $position[(int)$a[Question::FIELD_UID]] <=> $position[(int)$b[Question::FIELD_UID]]
+            static fn(array $a, array $b): int => $position[(int)$a[Question::FIELD_UID]] <=> $position[(int)$b[Question::FIELD_UID]]
         );
 
         return $this->dataMapper->map(Question::class, $rows);

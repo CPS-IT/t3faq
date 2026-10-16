@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,9 +12,9 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Service;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Cpsit\T3faq\Domain\Model\Category;
 use Cpsit\T3faq\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class CategoryService
 {
@@ -27,7 +28,7 @@ final class CategoryService
      *
      * @param CategoryRepository|null $categoryRepository
      */
-    public function __construct(CategoryRepository $categoryRepository = null)
+    public function __construct(?CategoryRepository $categoryRepository = null)
     {
         $this->categoryRepository = $categoryRepository ?? GeneralUtility::makeInstance(CategoryRepository::class);
     }
@@ -36,7 +37,7 @@ final class CategoryService
      * Builds a category's root line for a category
      *
      * @param int $uid The category ID to build the rootline for
-     * @return array Category rootline as array
+     * @return Category[] Category rootline as array
      */
     public function getCategoryRootLine(int $uid): array
     {
@@ -45,7 +46,7 @@ final class CategoryService
 
         while ($parentCategory !== null) {
             $rootlineIds[] = $parentCategory;
-            /** @var Category $childCategory */
+            /** @var Category|null $childCategory */
             $childCategory = $this->categoryRepository->findOneBy(['uid' => $parentCategory]);
             if ($childCategory === null) {
                 $parentCategory = 0;
@@ -58,12 +59,11 @@ final class CategoryService
         return array_values($rootlineIds);
     }
 
-
     /**
      * Extends a category list to include parent categories
      *
      * @param int[] $categoryList
-     * @return array
+     * @return int[]
      */
     public function getExtendedCategoryListIncludeParents(array $categoryList): array
     {
