@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,21 +14,33 @@ namespace Cpsit\T3faq\Domain\Repository;
 
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * @template T of DomainObjectInterface
+ * @extends Repository<T>
+ */
 abstract class AbstractRepository extends Repository
 {
     /**
+     * @param QueryInterface<T> $query
+     * @return array<int, ConstraintInterface>
+     */
+    abstract protected function getDemandConstraints(QueryInterface $query, DemandInterface $demand): array;
+
+    /**
      * @param DemandInterface $demand
-     * @return QueryResultInterface
+     * @return QueryResultInterface<int, T>
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function findDemanded(DemandInterface $demand): QueryResultInterface
     {
-        /** @var Query $query */
+        /** @var Query<T> $query */
         $query = $this->createQuery();
 
         if (!empty($constraints = $this->getDemandConstraints($query, $demand))) {
@@ -44,15 +57,17 @@ abstract class AbstractRepository extends Repository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
-     * @return array
+     * @param QueryInterface<T> $query
+     * @return array<string, string>
      */
     public function getDemandOrderings(QueryInterface $query, DemandInterface $demand): array
     {
-        return $this->getOrderings($demand->getSorting() ?? '');
+        return $this->getOrderings($demand->getSorting());
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected function getOrderings(string $sorting): array
     {
         $orderings = [];
@@ -66,9 +81,9 @@ abstract class AbstractRepository extends Repository
             [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
             // count == 1 means that no direction is given
             if ($ascDesc) {
-                $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
-                    QueryInterface::ORDER_DESCENDING :
-                    QueryInterface::ORDER_ASCENDING);
+                $orderings[$orderField] = ((strtolower($ascDesc) === 'desc')
+                    ? QueryInterface::ORDER_DESCENDING
+                    : QueryInterface::ORDER_ASCENDING);
             } else {
                 $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
             }

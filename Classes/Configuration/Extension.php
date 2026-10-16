@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Configuration;
@@ -11,56 +12,13 @@ namespace Cpsit\T3faq\Configuration;
  * of the License, or any later version.
  */
 
-use DWenzel\T3extensionTools\Configuration\ExtensionConfiguration;
-use Cpsit\T3faq\Configuration\Plugin\QuestionListPluginConfiguration;
-use Cpsit\T3faq\Configuration\Plugin\QuestionListSelectedPluginConfiguration;
-use Cpsit\T3faq\Domain\Model\Question;
-use Cpsit\T3faq\Configuration\SettingsInterface as SI;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-
 /**
  * Extension
  *
  * provides configuration for the extension t3faq
  */
-final class Extension extends ExtensionConfiguration
+final class Extension
 {
-
     public const NAME = 'T3faq';
     public const KEY = 't3faq';
-    public const VENDOR_NAME = 'Fr';
-
-    public const TABLES_ALLOWED_ON_STANDARD_PAGES = [
-        Question::TABLE_NAME
-    ];
-
-    /**
-     * SVG icons to register
-     */
-    protected const SVG_ICONS_TO_REGISTER = [
-        SI::ICON_IDENTIFIER_QUESTION => 'EXT:t3faq/Resources/Public/Icons/faq-question.svg',
-    ];
-
-    protected const PLUGINS_TO_REGISTER = [
-        QuestionListPluginConfiguration::class,
-        QuestionListSelectedPluginConfiguration::class
-    ];
-
-    /**
-     * Array of strings to add as TSconfig content.
-     * @var string[]
-     */
-    protected const ADD_PAGE_TSCONFIG = [
-        "@import 'EXT:t3faq/Configuration/TSconfig/ContentElementWizard.tsconfig'"
-    ];
-
-    /**
-     * Add page TSconfig content
-     */
-    public static function addPageTSconfig(): void
-    {
-        foreach (self::ADD_PAGE_TSCONFIG as $TSconfig) {
-            ExtensionManagementUtility::addPageTSConfig($TSconfig);
-        }
-    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\T3faq\Controller;
@@ -11,8 +12,8 @@ namespace Cpsit\T3faq\Controller;
  * of the License, or any later version.
  */
 
-use Cpsit\CpsUtility\Traits\FeCacheTagsTrait;
 use Cpsit\CpsUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
+use Cpsit\CpsUtility\Traits\FeCacheTagsTrait;
 use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
@@ -21,8 +22,8 @@ use Cpsit\T3faq\Domain\Repository\CategoryRepository;
 use Cpsit\T3faq\Domain\Repository\QuestionRepository;
 use Cpsit\T3faq\Service\QuestionToCategoryTreeService;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 
 /**
  * Class QuestionController
@@ -36,8 +37,12 @@ class QuestionController extends ActionController
 
     private CategoryRepository $categoryRepository;
 
-    public function __construct(QuestionRepository $questionRepository, CategoryRepository $categoryRepository)
-    {
+    public function __construct(
+        QuestionRepository $questionRepository,
+        CategoryRepository $categoryRepository,
+        private readonly QuestionDemandFromSettings $questionDemandFromSettings,
+        private readonly CategoryDemandFromSettings $categoryDemandFromSettings
+    ) {
         $this->questionRepository = $questionRepository;
         $this->categoryRepository = $categoryRepository;
     }
@@ -52,30 +57,26 @@ class QuestionController extends ActionController
     protected function prepareView(): void
     {
         $this->view->assign('contentObjectData', $this->request->getAttribute('currentContentObject')->data);
-        if (is_object($GLOBALS['TSFE'])) {
-            $this->view->assign('pageData', $GLOBALS['TSFE']->page);
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
+        if ($pageInformation instanceof PageInformation) {
+            $this->view->assign('pageData', $pageInformation->getPageRecord());
         }
     }
 
     public function listAction(): ResponseInterface
     {
         /** @var QuestionDemand $questionsDemand */
-        $questionsDemand = GeneralUtility::makeInstance(QuestionDemandFromSettings::class)->get($this->settings);
+        $questionsDemand = $this->questionDemandFromSettings->get($this->settings);
         $questions = $this->questionRepository->findDemanded($questionsDemand);
-
-        $test = $questions->getQuery()->execute()->toArray();
 
         /**
          * Prepare questions for view to meet client grouping and sorting requirements
          */
-
-        $categoryDemand = GeneralUtility::makeInstance(CategoryDemandFromSettings::class)->get($this->settings);
+        $categoryDemand = $this->categoryDemandFromSettings->get($this->settings);
         $categories = $this->categoryRepository->findByPidList(
             $categoryDemand->getPageIds(),
-            $categoryDemand->getSorting() ?? ''
+            $categoryDemand->getSorting()
         );
-
-        $testCat = $categories->getQuery()->execute()->toArray();
 
         $questionToCategoryTreeService = new QuestionToCategoryTreeService($questions, $categories);
         $questions = $questionToCategoryTreeService->getQuestionCategoryTree();
@@ -87,7 +88,7 @@ class QuestionController extends ActionController
         }
         $this->prepareView();
         $variables = [
-            SI::VIEW_VAR_CATEGORY_TREE => $questions
+            SI::VIEW_VAR_CATEGORY_TREE => $questions,
         ];
 
         $this->view->assignMultiple(
@@ -99,7 +100,7 @@ class QuestionController extends ActionController
     public function listSelectedAction(): ResponseInterface
     {
         /** @var QuestionDemand $demand */
-        $demand = GeneralUtility::makeInstance(QuestionDemandFromSettings::class)->get($this->settings);
+        $demand = $this->questionDemandFromSettings->get($this->settings);
 
         $questions = $this->questionRepository->findByUidList($demand->getQuestionIds());
         $this->prepareView();

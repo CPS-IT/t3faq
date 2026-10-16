@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,10 +12,12 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Model\Dto\Factory;
 
-
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 
 interface DemandFromSettingsFactoryInterface
 {
+    /**
+     * @param array<string, mixed> $settings
+     */
     public function get(array $settings = []): DemandInterface;
 }

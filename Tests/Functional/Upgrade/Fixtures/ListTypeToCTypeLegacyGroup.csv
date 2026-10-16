@@ -1,0 +1,7 @@
+tt_content
+,uid,pid,CType,list_type,header
+,1,1,list,t3faq_list,faq list
+be_groups
+,uid,pid,title,explicit_allowdeny
+,1,0,legacy format,"tt_content:list_type:t3faq_list:ALLOW"
+,2,0,old permission,"tt_content:list_type:t3faq_listselected"

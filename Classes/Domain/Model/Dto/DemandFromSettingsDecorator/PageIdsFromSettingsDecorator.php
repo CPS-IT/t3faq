@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -12,27 +13,37 @@ declare(strict_types=1);
 namespace Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator;
 
 use Cpsit\CpsUtility\Utility\PageUtility;
-use Cpsit\T3faq\Configuration\SettingsInterface as SI;
+use Cpsit\T3faq\Domain\Model\Dto\CategoryDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 
 class PageIdsFromSettingsDecorator extends AbstractQuestionDemandFromSettingsDecorator
 {
     public const SETTING_KEY_RECURSIVE = 'recursive';
     public const SETTING_KEY_STORAGE_ID = 'storageIds';
 
+    /**
+     * @param QuestionDemand|CategoryDemand $component
+     * @param array<string, mixed> $settings
+     */
+    public function __construct(
+        DemandInterface $component,
+        array $settings,
+        private readonly PageUtility $pageUtility
+    ) {
+        parent::__construct($component, $settings);
+    }
+
     public function decorate(): DemandInterface
     {
-        /** @var PageUtility $pageUtility */
-        $pageUtility = GeneralUtility::makeInstance(PageUtility::class);
-        $recursive = (int)$this->settings[self::SETTING_KEY_RECURSIVE] ?? 0;
+        $recursive = (int)($this->settings[self::SETTING_KEY_RECURSIVE] ?? 0);
 
         $storageIds = '0';
         if (!empty($this->settings[self::SETTING_KEY_STORAGE_ID])) {
             $storageIds = $this->settings[self::SETTING_KEY_STORAGE_ID];
         }
         $this->component->setPageIds(
-            $pageUtility->resolveStoragePages($storageIds, $recursive)
+            $this->pageUtility->resolveStoragePages($storageIds, $recursive)
         );
 
         return $this->component;

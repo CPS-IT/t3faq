@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,13 +12,22 @@ declare(strict_types=1);
 
 namespace Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator;
 
+use Cpsit\T3faq\Domain\Model\Dto\CategoryDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
+use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
 
 abstract class AbstractQuestionDemandFromSettingsDecorator implements ComponentDemandDecoratorInterface
 {
+    /** @var QuestionDemand|CategoryDemand */
     protected DemandInterface $component;
+
+    /** @var array<string, mixed> */
     protected array $settings;
 
+    /**
+     * @param QuestionDemand|CategoryDemand $component
+     * @param array<string, mixed> $settings
+     */
     public function __construct(DemandInterface $component, array $settings)
     {
         $this->component = $component;

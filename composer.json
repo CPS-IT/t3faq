@@ -1,30 +1,30 @@
 {
 	"name": "cpsit/t3faq",
 	"description": "Frequently Asked Questions. This package is an extension to the TYPO3 system.",
-	"homepage": "https://git.dena.de/common/components/t3faq",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
+	"homepage": "https://git.dena.de/common/components/t3faq",
+	"require": {
+		"cpsit/cps-utility": "^3.2",
+		"typo3/cms-core": "^13.4",
+		"typo3/cms-extbase": "^13.4",
+		"typo3/cms-frontend": "^13.4",
+		"typo3/cms-install": "^13.4"
+	},
+	"require-dev": {
+		"armin/editorconfig-cli": "^2.2",
+		"ergebnis/composer-normalize": "^2.52",
+		"friendsofphp/php-cs-fixer": "^3.95",
+		"helmich/typo3-typoscript-lint": "^3.3",
+		"phpstan/phpstan": "^2.1",
+		"roave/security-advisories": "dev-master",
+		"typo3/coding-standards": "^0.9.0",
+		"typo3/testing-framework": "^8.3"
+	},
 	"repositories": {
 		"cps-utility": {
 			"type": "vcs",
 			"url": "git@github.com:CPS-IT/cps-utility.git"
-		}
-	},
-	"require": {
-		"php": "^8.2",
-		"typo3/cms-core": "^12.4",
-		"dwenzel/t3extension-tools": "^4.0",
-		"cpsit/cps-utility": "^3.2"
-	},
-	"require-dev": {
-		"roave/security-advisories": "dev-master",
-		"typo3/testing-framework": "^8.3"
-	},
-	"extra": {
-		"typo3/cms": {
-			"extension-key": "t3faq",
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"web-dir": ".Build/Web"
 		}
 	},
 	"autoload": {
@@ -38,10 +38,19 @@
 		}
 	},
 	"config": {
-		"vendor-dir": ".Build/vendor/",
+		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
 		"bin-dir": ".Build/bin/",
-		"platform": {
-			"php": "8.2"
+		"vendor-dir": ".Build/vendor/"
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"extension-key": "t3faq",
+			"web-dir": ".Build/Web"
 		}
 	},
 	"scripts": {
@@ -49,18 +58,53 @@
 			"mkdir -p .Build/Web/typo3conf/ext/",
 			"[ -L .Build/Web/typo3conf/ext/t3faq ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/t3faq"
 		],
+		"fix": [
+			"@fix:composer",
+			"@fix:editorconfig",
+			"@fix:php"
+		],
+		"fix:composer": "@composer normalize",
+		"fix:editorconfig": "ec --fix --dir=. -e .Build -e .git",
+		"fix:php": "php-cs-fixer fix",
+		"lint": [
+			"@lint:composer",
+			"@lint:editorconfig",
+			"@lint:php",
+			"@lint:typoscript"
+		],
+		"lint:composer": "@composer normalize --dry-run",
+		"lint:editorconfig": "ec --dir=. -e .Build -e .git",
+		"lint:php": "php-cs-fixer fix --dry-run",
+		"lint:typoscript": "typoscript-lint",
+		"sca": [
+			"@sca:php"
+		],
+		"sca:php": "phpstan analyse -c phpstan.neon --memory-limit=2G",
 		"test": [
 			"@test:unit",
-			"@test:functional:run"
+			"@test:functional"
 		],
-		"test:unit": [
-			"phpunit -c Tests/Build/UnitTests.xml"
-		],
-		"test:functional:prepare": [
-			"typo3cms install:setup --no-interaction --use-existing-database"
-		],
-		"test:functional:run": [
-			".Build/bin/phpunit --colors -c Tests/Build/FunctionalTests.xml Tests/Functional/"
-		]
+		"test:coverage:functional": "phpunit -c Tests/Build/FunctionalTests.xml --fail-on-empty-test-suite --coverage-text --colors=never --coverage-html .Build/log/coverage/html/functional",
+		"test:coverage:unit": "phpunit -c Tests/Build/UnitTests.xml --fail-on-empty-test-suite --coverage-text --colors=never --coverage-html .Build/log/coverage/html/unit",
+		"test:functional": "phpunit -c Tests/Build/FunctionalTests.xml --fail-on-empty-test-suite",
+		"test:unit": "phpunit -c Tests/Build/UnitTests.xml --fail-on-empty-test-suite"
+	},
+	"scripts-descriptions": {
+		"fix": "Fix all code quality issues reported by the registered linters",
+		"fix:composer": "Fix all issues in `composer.json`",
+		"fix:editorconfig": "Fix all styling issues violating the `.editorconfig` rules",
+		"fix:php": "Fix all styling issues violating the configured PHP-CS-Fixer rules",
+		"lint": "Run all registered linters to detect code quality issues",
+		"lint:composer": "Lint `composer.json` to detect unnormalized styles",
+		"lint:editorconfig": "Lint all project files to detect violations of the `.editorconfig` rules",
+		"lint:php": "Lint all PHP files to detect coding style violations",
+		"lint:typoscript": "Lint all TypoScript and TSconfig files to detect coding style violations",
+		"sca": "Run all registered static code analyzers to detect issues in the codebase",
+		"sca:php": "Analyze all PHP files by using PHPStan, based on the configured level",
+		"test": "Run all test suites",
+		"test:coverage:functional": "Run functional tests with text and HTML coverage report",
+		"test:coverage:unit": "Run unit tests with text and HTML coverage report",
+		"test:functional": "Run the functional test suite",
+		"test:unit": "Run the unit test suite"
 	}
 }

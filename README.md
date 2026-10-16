@@ -15,6 +15,19 @@ composer config repositories.t3faq vcs git@github.com:CPS-IT/t3faq.git
 composer require cpsit/t3faq
 ```
 
+### Requirements
+
+TYPO3 13.4 only. Both plugins (`t3faq_list`, `t3faq_listselected`) are content
+types (CType) selectable in the content element wizard.
+
+### Upgrade from 3.x
+
+Run the upgrade wizard `t3faq_listTypeToCType` (`typo3 upgrade:run
+t3faq_listTypeToCType`). It migrates the content records and the backend group
+permissions of both plugins from `list_type` to `CType`. Run it through the
+console: the Install Tool does not run the prerequisite that migrates backend
+groups in the legacy permission format.
+
 ## Actions / Views
 
 ### List selected FAQs
@@ -37,23 +50,44 @@ Editors have the possibility to enable or disable the search form in front end.
 
 **Cache**: Cacheable
 
-## Tests
+## Code quality
 
-### Setup Test Environment
+Run the tools in the package's DDEV project:
 
 ```
-docker-composer -f Tests/Build/docker-compose.yml up -d
-docker-compose -f Tests/Build/docker-compose.yml exec web bash -c "cd /app && composer test:functional:prepare"
+ddev composer lint   # composer.json, EditorConfig, PHP-CS-Fixer, TypoScript
+ddev composer fix    # fix the findings that can be fixed automatically
+ddev composer sca    # PHPStan, level 6
+```
+
+## Tests
+
+Tests and code quality tools run in the package's own DDEV project
+(`.ddev/config.yaml`: PHP 8.4, MariaDB 10.11). The functional tests use the
+database named in the `typo3Database*` variables of the DDEV config. The
+private repository `cpsit/cps-utility` needs your SSH key in the container:
+run `ddev auth ssh` once. There is no CI pipeline in this repository.
+
+```
+ddev start
+ddev auth ssh
+ddev composer install
 ```
 
 ### Unit Tests
 
 ```
-docker-compose -f Tests/Build/docker-compose.yml exec web bash -c "cd /app && composer test:unit"
+ddev composer test:unit
 ```
 
 ### Functional Tests
 
 ```
-docker-compose -f Tests/Build/docker-compose.yml exec web bash -c "cd /app && composer test:functional:run"
+ddev composer test:functional
+```
+
+### All Tests
+
+```
+ddev composer test
 ```

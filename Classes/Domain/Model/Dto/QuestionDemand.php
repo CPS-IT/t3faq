@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,8 +14,6 @@ namespace Cpsit\T3faq\Domain\Model\Dto;
 
 class QuestionDemand implements DemandInterface
 {
-    public const DEFAULT_LIMIT = 10;
-
     /**
      * Page Ids to search for
      * @var int[]
@@ -33,24 +32,7 @@ class QuestionDemand implements DemandInterface
      */
     protected array $categoryIds = [];
 
-    protected int $limit = self::DEFAULT_LIMIT;
-
     protected string $sorting = '';
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    /**
-     * @param int $limit
-     * @return QuestionDemand
-     */
-    public function setLimit(int $limit): QuestionDemand
-    {
-        $this->limit = $limit;
-        return $this;
-    }
 
     /**
      * @return int[]
