@@ -69,8 +69,6 @@ class QuestionController extends ActionController
         $questionsDemand = $this->questionDemandFromSettings->get($this->settings);
         $questions = $this->questionRepository->findDemanded($questionsDemand);
 
-        $test = $questions->getQuery()->execute()->toArray();
-
         /**
          * Prepare questions for view to meet client grouping and sorting requirements
          */
@@ -79,8 +77,6 @@ class QuestionController extends ActionController
             $categoryDemand->getPageIds(),
             $categoryDemand->getSorting()
         );
-
-        $testCat = $categories->getQuery()->execute()->toArray();
 
         $questionToCategoryTreeService = new QuestionToCategoryTreeService($questions, $categories);
         $questions = $questionToCategoryTreeService->getQuestionCategoryTree();
