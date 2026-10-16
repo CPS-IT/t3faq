@@ -35,7 +35,7 @@ final class CategoryService
             /** @var Category|null $childCategory */
             $childCategory = $this->categoryRepository->findOneBy(['uid' => $parentCategory]);
             if ($childCategory === null) {
-                $parentCategory = 0;
+                $parentCategory = null;
             } else {
                 $parentCategory = $childCategory->getParent();
             }
