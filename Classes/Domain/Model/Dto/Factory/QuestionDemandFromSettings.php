@@ -19,7 +19,6 @@ use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\QuestionIdsFromSett
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\SortingFromSettingDecorator;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Get an instance of QuestionDemand from typoscript settings
@@ -60,7 +59,7 @@ class QuestionDemandFromSettings extends AbstractDemandFromSettings
      */
     public function get(array $settings = []): DemandInterface
     {
-        $demand = GeneralUtility::makeInstance(QuestionDemand::class);
+        $demand = new QuestionDemand();
         $this->decorate($settings, $demand);
         return $demand;
     }

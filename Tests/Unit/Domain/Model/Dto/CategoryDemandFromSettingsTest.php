@@ -17,33 +17,29 @@ use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\CategoryDemand;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\CategoryDemandFromSettings;
+use Cpsit\T3faq\Service\CategoryService;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CategoryDemandFromSettingsTest extends TestCase
 {
-    protected function tearDown(): void
-    {
-        GeneralUtility::purgeInstances();
-        parent::tearDown();
-    }
-
     /**
      * @param int[] $pageIds
      */
-    private function registerPageUtility(array $pageIds): void
+    private function createSubject(array $pageIds): CategoryDemandFromSettings
     {
-        $pageUtility = $this->createMock(PageUtility::class);
+        $pageUtility = self::createStub(PageUtility::class);
         $pageUtility->method('resolveStoragePages')->willReturn($pageIds);
-        GeneralUtility::addInstance(PageUtility::class, $pageUtility);
+        // CategoryService is final and not used by these settings
+        $categoryService = (new \ReflectionClass(CategoryService::class))->newInstanceWithoutConstructor();
+
+        return new CategoryDemandFromSettings($pageUtility, $categoryService);
     }
 
     public function testGetReturnsDemandInterface(): void
     {
-        $this->registerPageUtility([0]);
-        $categoryDemandFromSettingsProvider = new CategoryDemandFromSettings();
+        $provider = $this->createSubject([0]);
 
-        self::assertInstanceOf(DemandInterface::class, $categoryDemandFromSettingsProvider->get());
+        self::assertInstanceOf(DemandInterface::class, $provider->get());
     }
 
     public function testGetReturnsDecoratedDemandInterface(): void
@@ -54,10 +50,9 @@ class CategoryDemandFromSettingsTest extends TestCase
             SI::SETTING_CATEGORIES_LIST => '116,19,97,100',
         ];
 
-        $this->registerPageUtility([41]);
-        $questionDemandFromSettingsProvider = new CategoryDemandFromSettings();
+        $provider = $this->createSubject([41]);
         /** @var CategoryDemand $demand */
-        $demand = $questionDemandFromSettingsProvider->get($settings);
+        $demand = $provider->get($settings);
 
         self::assertInstanceOf(
             DemandInterface::class,
@@ -67,5 +62,15 @@ class CategoryDemandFromSettingsTest extends TestCase
         self::assertEquals($settings[SI::SETTING_CATEGORY_SORTING], $demand->getSorting());
         self::assertContains((int)$settings[SI::SETTING_CATEGORY_STORAGE_ID], $demand->getPageIds());
         self::assertEquals(explode(',', $settings[SI::SETTING_CATEGORIES_LIST]), $demand->getCategoryIds());
+    }
+
+    public function testConstructorRequiresInjectedServices(): void
+    {
+        $parameters = (new \ReflectionClass(CategoryDemandFromSettings::class))->getConstructor()?->getParameters() ?? [];
+
+        self::assertSame(
+            [PageUtility::class, CategoryService::class],
+            array_map(static fn(\ReflectionParameter $parameter): string => (string)$parameter->getType(), $parameters)
+        );
     }
 }

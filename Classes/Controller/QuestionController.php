@@ -22,7 +22,6 @@ use Cpsit\T3faq\Domain\Repository\CategoryRepository;
 use Cpsit\T3faq\Domain\Repository\QuestionRepository;
 use Cpsit\T3faq\Service\QuestionToCategoryTreeService;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -37,8 +36,12 @@ class QuestionController extends ActionController
 
     private CategoryRepository $categoryRepository;
 
-    public function __construct(QuestionRepository $questionRepository, CategoryRepository $categoryRepository)
-    {
+    public function __construct(
+        QuestionRepository $questionRepository,
+        CategoryRepository $categoryRepository,
+        private readonly QuestionDemandFromSettings $questionDemandFromSettings,
+        private readonly CategoryDemandFromSettings $categoryDemandFromSettings
+    ) {
         $this->questionRepository = $questionRepository;
         $this->categoryRepository = $categoryRepository;
     }
@@ -61,7 +64,7 @@ class QuestionController extends ActionController
     public function listAction(): ResponseInterface
     {
         /** @var QuestionDemand $questionsDemand */
-        $questionsDemand = GeneralUtility::makeInstance(QuestionDemandFromSettings::class)->get($this->settings);
+        $questionsDemand = $this->questionDemandFromSettings->get($this->settings);
         $questions = $this->questionRepository->findDemanded($questionsDemand);
 
         $test = $questions->getQuery()->execute()->toArray();
@@ -69,7 +72,7 @@ class QuestionController extends ActionController
         /**
          * Prepare questions for view to meet client grouping and sorting requirements
          */
-        $categoryDemand = GeneralUtility::makeInstance(CategoryDemandFromSettings::class)->get($this->settings);
+        $categoryDemand = $this->categoryDemandFromSettings->get($this->settings);
         $categories = $this->categoryRepository->findByPidList(
             $categoryDemand->getPageIds(),
             $categoryDemand->getSorting()
@@ -99,7 +102,7 @@ class QuestionController extends ActionController
     public function listSelectedAction(): ResponseInterface
     {
         /** @var QuestionDemand $demand */
-        $demand = GeneralUtility::makeInstance(QuestionDemandFromSettings::class)->get($this->settings);
+        $demand = $this->questionDemandFromSettings->get($this->settings);
 
         $questions = $this->questionRepository->findByUidList($demand->getQuestionIds());
         $this->prepareView();

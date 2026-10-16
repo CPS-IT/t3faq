@@ -17,33 +17,29 @@ use Cpsit\T3faq\Configuration\SettingsInterface as SI;
 use Cpsit\T3faq\Domain\Model\Dto\DemandInterface;
 use Cpsit\T3faq\Domain\Model\Dto\Factory\QuestionDemandFromSettings;
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
+use Cpsit\T3faq\Service\CategoryService;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class QuestionDemandFromSettingsTest extends TestCase
 {
-    protected function tearDown(): void
-    {
-        GeneralUtility::purgeInstances();
-        parent::tearDown();
-    }
-
     /**
      * @param int[] $pageIds
      */
-    private function registerPageUtility(array $pageIds): void
+    private function createSubject(array $pageIds): QuestionDemandFromSettings
     {
-        $pageUtility = $this->createMock(PageUtility::class);
+        $pageUtility = self::createStub(PageUtility::class);
         $pageUtility->method('resolveStoragePages')->willReturn($pageIds);
-        GeneralUtility::addInstance(PageUtility::class, $pageUtility);
+        // CategoryService is final and not used by these settings
+        $categoryService = (new \ReflectionClass(CategoryService::class))->newInstanceWithoutConstructor();
+
+        return new QuestionDemandFromSettings($pageUtility, $categoryService);
     }
 
     public function testGetReturnsDemandInterface(): void
     {
-        $this->registerPageUtility([0]);
-        $questionDemandFromSettingsProvider = new QuestionDemandFromSettings();
+        $provider = $this->createSubject([0]);
 
-        self::assertInstanceOf(DemandInterface::class, $questionDemandFromSettingsProvider->get());
+        self::assertInstanceOf(DemandInterface::class, $provider->get());
     }
 
     public function testGetReturnsDecoratedDemandInterface(): void
@@ -55,10 +51,9 @@ class QuestionDemandFromSettingsTest extends TestCase
 
         ];
 
-        $this->registerPageUtility([41]);
-        $questionDemandFromSettingsProvider = new QuestionDemandFromSettings();
+        $provider = $this->createSubject([41]);
         /** @var QuestionDemand $demand */
-        $demand = $questionDemandFromSettingsProvider->get($settings);
+        $demand = $provider->get($settings);
 
         self::assertInstanceOf(
             DemandInterface::class,
@@ -68,5 +63,15 @@ class QuestionDemandFromSettingsTest extends TestCase
         self::assertEquals($settings[SI::SETTING_FAQ_SORTING], $demand->getSorting());
         self::assertContains((int)$settings[SI::SETTING_FAQ_STORAGE_ID], $demand->getPageIds());
         self::assertEquals(explode(',', $settings[SI::SETTING_LIST_SELECTED_QUESTIONS]), $demand->getQuestionIds());
+    }
+
+    public function testConstructorRequiresInjectedServices(): void
+    {
+        $parameters = (new \ReflectionClass(QuestionDemandFromSettings::class))->getConstructor()?->getParameters() ?? [];
+
+        self::assertSame(
+            [PageUtility::class, CategoryService::class],
+            array_map(static fn(\ReflectionParameter $parameter): string => (string)$parameter->getType(), $parameters)
+        );
     }
 }

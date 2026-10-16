@@ -14,24 +14,10 @@ namespace Cpsit\T3faq\Service;
 
 use Cpsit\T3faq\Domain\Model\Category;
 use Cpsit\T3faq\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class CategoryService
 {
-    /**
-     * @var CategoryRepository
-     */
-    private CategoryRepository $categoryRepository;
-
-    /**
-     * CategoryUidToHierarchy constructor.
-     *
-     * @param CategoryRepository|null $categoryRepository
-     */
-    public function __construct(?CategoryRepository $categoryRepository = null)
-    {
-        $this->categoryRepository = $categoryRepository ?? GeneralUtility::makeInstance(CategoryRepository::class);
-    }
+    public function __construct(private readonly CategoryRepository $categoryRepository) {}
 
     /**
      * Builds a category's root line for a category

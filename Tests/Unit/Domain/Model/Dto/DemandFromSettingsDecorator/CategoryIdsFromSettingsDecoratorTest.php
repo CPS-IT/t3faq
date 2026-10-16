@@ -14,6 +14,7 @@ namespace Cpsit\T3faq\Tests\Unit\Domain\Model\Dto\DemandFromSettingsDecorator;
 
 use Cpsit\T3faq\Domain\Model\Dto\DemandFromSettingsDecorator\CategoryIdsFromSettingsDecorator;
 use Cpsit\T3faq\Domain\Model\Dto\QuestionDemand;
+use Cpsit\T3faq\Service\CategoryService;
 use PHPUnit\Framework\TestCase;
 
 class CategoryIdsFromSettingsDecoratorTest extends TestCase
@@ -26,10 +27,23 @@ class CategoryIdsFromSettingsDecoratorTest extends TestCase
 
         ];
         $component = new QuestionDemand();
-        $decorator = new CategoryIdsFromSettingsDecorator($component, $settings);
+        // CategoryService is final and not used without the parent category setting
+        $categoryService = (new \ReflectionClass(CategoryService::class))->newInstanceWithoutConstructor();
+        $decorator = new CategoryIdsFromSettingsDecorator($component, $settings, $categoryService);
         self::assertEquals(
             explode(',', $settings[CategoryIdsFromSettingsDecorator::SETTING_KEY_CATEGORY_LIST]),
             $decorator->decorate()->getCategoryIds()
         );
+    }
+
+    public function testConstructorRequiresCategoryService(): void
+    {
+        $parameters = (new \ReflectionClass(CategoryIdsFromSettingsDecorator::class))->getConstructor()?->getParameters() ?? [];
+
+        self::assertSame(
+            ['component', 'settings', 'categoryService'],
+            array_map(static fn(\ReflectionParameter $parameter): string => $parameter->getName(), $parameters)
+        );
+        self::assertSame(CategoryService::class, (string)$parameters[2]->getType());
     }
 }
