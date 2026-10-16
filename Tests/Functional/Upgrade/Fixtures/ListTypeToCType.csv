@@ -1,0 +1,13 @@
+tt_content
+,uid,pid,CType,list_type,header,hidden,deleted
+,1,1,list,t3faq_list,faq list,0,0
+,2,1,list,t3faq_listselected,faq selected,0,0
+,5,1,list,other_plugin,other plugin,0,0
+,6,1,list,cpsauthor_list,list of another extension,0,0
+,7,1,t3faq_list,,already migrated,0,0
+,8,1,text,,text,0,0
+be_groups
+,uid,pid,title,explicit_allowdeny
+,1,0,old permission,"tt_content:CType:text,tt_content:list_type:t3faq_list,tt_content:list_type:other_plugin"
+,2,0,old permission selected,"tt_content:list_type:t3faq_listselected"
+,3,0,new permission,"tt_content:CType:t3faq_list"
