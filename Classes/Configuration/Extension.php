@@ -12,8 +12,6 @@ namespace Cpsit\T3faq\Configuration;
  * of the License, or any later version.
  */
 
-use Cpsit\T3faq\Domain\Model\Question;
-
 /**
  * Extension
  *
@@ -23,9 +21,4 @@ final class Extension
 {
     public const NAME = 'T3faq';
     public const KEY = 't3faq';
-    public const VENDOR_NAME = 'Fr';
-
-    public const TABLES_ALLOWED_ON_STANDARD_PAGES = [
-        Question::TABLE_NAME,
-    ];
 }

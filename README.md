@@ -15,6 +15,19 @@ composer config repositories.t3faq vcs git@github.com:CPS-IT/t3faq.git
 composer require cpsit/t3faq
 ```
 
+### Requirements
+
+TYPO3 13.4 only. Both plugins (`t3faq_list`, `t3faq_listselected`) are content
+types (CType) selectable in the content element wizard.
+
+### Upgrade from 3.x
+
+Run the upgrade wizard `t3faq_listTypeToCType` (`typo3 upgrade:run
+t3faq_listTypeToCType`). It migrates the content records and the backend group
+permissions of both plugins from `list_type` to `CType`. Run it through the
+console: the Install Tool does not run the prerequisite that migrates backend
+groups in the legacy permission format.
+
 ## Actions / Views
 
 ### List selected FAQs
